@@ -1,0 +1,29 @@
+{
+  "_type": "page",
+  "title": "Home",
+  "slug": {
+    "_type": "slug",
+    "current": "home"
+  },
+  "sections": [
+    {
+      "_type": "section",
+      "type": "richText",
+      "heading": "Welcome",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Manage this content from Sanity.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ]
+    }
+  ]
+}
