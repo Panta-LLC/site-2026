@@ -51,6 +51,34 @@ If `projectId`/`dataset` are missing, Studio will fail to start and Web will thr
 - Run Storybook for the UI package: from repo root: `pnpm --filter @panta/ui storybook` or `pnpm --filter web storybook` depending on workspace scripts.
 - The repository includes a Storybook story `Analytics/TrackEvent` which demonstrates calling the shared `trackEvent` helper. In CI, mock `mixpanel-browser` to avoid network calls.
 
+## Continuous Integration (GitHub Actions)
+
+- A GitHub Actions workflow `ci.yml` is provided under `.github/workflows/`.
+- The workflow runs on `pull_request` and on `push` to `main` and performs:
+  - install dependencies via `pnpm`
+  - run `lint`, `typecheck`, `test`, and `build` across the workspace
+  - build Storybook for the UI package (artifact)
+  - optionally deploy to Vercel when `VERCEL_TOKEN` is set in repository secrets.
+
+Make sure to add the following repository secrets in GitHub for deploys (optional):
+
+- `VERCEL_TOKEN` — your Vercel personal token (only required for the workflow deploy step).
+
+## Pull Request Checklist
+
+Use this checklist when opening a PR for the Mixpanel integration or related changes:
+
+- [ ] Branch name follows convention (e.g. `feat/mixpanel-integration`).
+- [ ] Code compiles and typechecks: `pnpm -w -r typecheck`.
+- [ ] Lint passes: `pnpm -w -r lint`.
+- [ ] Unit tests added/updated and pass: `pnpm -w -r test`.
+- [ ] Storybook stories added/updated (if UI changes): `pnpm --filter @panta/ui storybook`.
+- [ ] README/documentation updated for env vars and instructions.
+- [ ] No secrets committed in the branch (run the security scan in this README).
+- [ ] If sensitive tokens were ever committed, they have been rotated.
+- [ ] Add a brief description of data tracked and privacy considerations (GDPR/CCPA) if applicable.
+
+
 ## Security scan
 
 - To quickly search for likely committed secrets (file paths only):
