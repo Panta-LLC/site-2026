@@ -11,6 +11,13 @@ coverage/
 /out/
 .env
 .env.*
+.env.local
+.env.*.local
+# Ignore environment files in apps/packages
+apps/**/.env*
+packages/**/.env*
+*.secret
+.envrc
 .DS_Store
 .vscode/
 .idea/
