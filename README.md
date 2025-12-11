@@ -45,6 +45,22 @@ If `projectId`/`dataset` are missing, Studio will fail to start and Web will thr
 - **Security:** If any tokens were accidentally committed, rotate them immediately and remove committed files from history if necessary.
 - **Local dev:** Keep local `.env*` files out of Git; `.gitignore` already contains `.env.local` and `**/.next/` patterns.
 
+## Running tests & Storybook
+
+- Run unit tests (monorepo root): `pnpm -w -r test` — or run from a specific package, e.g. `pnpm --filter @panta/lib test`.
+- Run Storybook for the UI package: from repo root: `pnpm --filter @panta/ui storybook` or `pnpm --filter web storybook` depending on workspace scripts.
+- The repository includes a Storybook story `Analytics/TrackEvent` which demonstrates calling the shared `trackEvent` helper. In CI, mock `mixpanel-browser` to avoid network calls.
+
+## Security scan
+
+- To quickly search for likely committed secrets (file paths only):
+
+```bash
+cd site
+git grep -n --untracked -E 'NEXT_PUBLIC_|SANITY_|MIXPANEL|sk[[:alnum:]]{20,}' || true
+```
+
+
 ## Deployment
 
 - GitHub Actions CI runs lint, typecheck, tests, and builds.
