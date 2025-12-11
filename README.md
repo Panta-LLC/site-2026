@@ -5,6 +5,7 @@ This monorepo contains the website (Next.js + Tailwind), Sanity CMS Studio, opti
 ## Apps
 
 - `apps/web`: Next.js app (App Router) with TailwindCSS, SEO, sitemap, analytics (Mixpanel), A/B testing (GrowthBook), feature flags, accessibility.
+  - Mixpanel: configure `NEXT_PUBLIC_MIXPANEL_TOKEN` in `apps/web/.env.local` to enable analytics.
 - `apps/studio`: Sanity v3 Studio with schemas for pages, sections, SEO, theme, flags, experiments.
 - `apps/api`: Express.js + MongoDB placeholder service.
 
@@ -37,6 +38,12 @@ If `projectId`/`dataset` are missing, Studio will fail to start and Web will thr
 - `pnpm test` — run unit tests.
 - `pnpm e2e` — run Playwright tests.
 - `pnpm storybook` — run Storybook.
+
+## Mixpanel setup
+
+- **Env var:** Set `NEXT_PUBLIC_MIXPANEL_TOKEN` in `apps/web/.env.local` (or in Vercel project settings) to enable Mixpanel tracking.
+- **Security:** If any tokens were accidentally committed, rotate them immediately and remove committed files from history if necessary.
+- **Local dev:** Keep local `.env*` files out of Git; `.gitignore` already contains `.env.local` and `**/.next/` patterns.
 
 ## Deployment
 
