@@ -57,3 +57,4 @@ storybook-static/
 
 # Local environment overrides
 /local.env
+apps/web/.next/cache/*
