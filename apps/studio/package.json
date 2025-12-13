@@ -6,7 +6,10 @@
     "dev": "sanity dev",
     "build": "sanity build",
     "start": "sanity start",
-    "import:home": "node scripts/import-home.js"
+    "import:home": "node scripts/import-home.js",
+    "import:marketing": "node scripts/import-marketing.js",
+    "import:services": "node scripts/import-services.js",
+    "setup:home": "node scripts/import-services.js && node scripts/add-service-previews-to-home.js"
   },
   "dependencies": {
     "@sanity/client": "^6.29.1",

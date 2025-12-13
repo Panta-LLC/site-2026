@@ -45,9 +45,9 @@ export function Hero({ section }: { section?: any }) {
       <h1 className="text-4xl sm:text-5xl font-bold tracking-tight w-[80%] max-w-[900px]">
         {heading}
       </h1>
-      <h2 className="text-3xl prose dark:prose-invert mt-4 w-[70%] max-w-[900px]">
+      <div className="text-lg prose dark:prose-invert mt-4 w-[70%] max-w-[900px]">
         {renderContent(content)}
-      </h2>
+      </div>
     </section>
   );
 }

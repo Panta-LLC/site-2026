@@ -16,9 +16,17 @@ export default defineType({
           { title: "Features", value: "features" },
           { title: "CTA", value: "cta" },
           { title: "Image", value: "image" },
+          { title: "Service Previews", value: "servicePreviews" },
         ],
         layout: "radio",
       },
+    }),
+    defineField({
+      name: "services",
+      title: "Services",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "service" }] }],
+      hidden: ({ parent }) => parent?.type !== "servicePreviews",
     }),
     defineField({ name: "heading", type: "string" }),
     defineField({

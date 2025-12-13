@@ -30,6 +30,13 @@ const config: Config = {
           "Arial",
           "sans-serif",
         ],
+        serif: [
+          "caecilia",
+          "Georgia",
+          "Times New Roman",
+          "Times",
+          "serif",
+        ],
       },
     },
   },

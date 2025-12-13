@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 type MenuItem = { title?: string; url?: string; internal?: { current?: string } };
 type FooterCategory = { title?: string; links?: { label?: string; url?: string }[] };
@@ -38,7 +39,7 @@ export function Header({
       )}
 
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           {logo?.asset?.url ? (
             <img
               src={logo.asset.url}
@@ -49,7 +50,7 @@ export function Header({
           ) : (
             <div className="w-9 h-9 bg-neutral-200 dark:bg-neutral-700 rounded" />
           )}
-        </div>
+        </Link>
 
         <nav className="md:flex gap-6 bg-transparent text-white">
           {menu &&

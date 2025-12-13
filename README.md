@@ -78,7 +78,6 @@ Use this checklist when opening a PR for the Mixpanel integration or related cha
 - [ ] If sensitive tokens were ever committed, they have been rotated.
 - [ ] Add a brief description of data tracked and privacy considerations (GDPR/CCPA) if applicable.
 
-
 ## Security scan
 
 - To quickly search for likely committed secrets (file paths only):
@@ -87,7 +86,6 @@ Use this checklist when opening a PR for the Mixpanel integration or related cha
 cd site
 git grep -n --untracked -E 'NEXT_PUBLIC_|SANITY_|MIXPANEL|sk[[:alnum:]]{20,}' || true
 ```
-
 
 ## Deployment
 
