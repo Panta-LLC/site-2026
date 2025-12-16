@@ -17,3 +17,6 @@ export const sanityClient = createClient({
   useCdn: true,
   token: process.env.SANITY_READ_TOKEN,
 });
+
+// Export queries service
+export * from "./queries";

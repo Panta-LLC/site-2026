@@ -1,37 +1,7 @@
+import { getServiceBySlug } from "@panta/lib/src/sanity/queries";
 import { Hero } from "@panta/ui/src/sections/Hero";
 import { Feature } from "@panta/ui/src/sections/Features";
 import { Footer } from "@panta/ui/src/sections/Footer";
-import { sanityClient } from "@panta/lib/src/sanity/client";
-
-async function getMediaDesignPage() {
-  const query = `*[_type == "service" && slug.current == "media-design"][0]{
-    _id,
-    title,
-    category,
-    description,
-    slug,
-    content,
-    sections[]{
-      type,
-      heading,
-      content,
-      services[]->{
-        _id,
-        title,
-        category,
-        description,
-        slug
-      }
-    },
-    seo
-  }`;
-  try {
-    const data = await sanityClient.fetch(query);
-    return data;
-  } catch (e) {
-    return null;
-  }
-}
 
 const Section = ({ section }: { section: any }) => {
   switch (section.type) {
@@ -66,7 +36,7 @@ const renderContent = (content: any) => {
 };
 
 export default async function MediaDesignPage() {
-  const service = await getMediaDesignPage();
+  const service = await getServiceBySlug("media-design");
 
   if (!service) {
     return (
@@ -129,7 +99,7 @@ export default async function MediaDesignPage() {
 }
 
 export async function generateMetadata() {
-  const service = await getMediaDesignPage();
+  const service = await getServiceBySlug("media-design");
 
   if (!service) {
     return {

@@ -122,312 +122,97 @@
   {
     "_type": "service",
     "title": "Product Development",
-    "category": "product",
+    "category": "product-web",
     "slug": {
       "_type": "slug",
       "current": "product-development"
     },
     "description": "Turn your vision into a market-ready product. Our comprehensive product development services cover every stage from ideation to launch and beyond.",
-    "content": [
+    "sections": [
       {
-        "_type": "block",
-        "style": "normal",
-        "children": [
+        "_type": "section",
+        "type": "serviceDetails",
+        "content": [
           {
-            "_type": "span",
-            "text": "Bringing a product from concept to market requires expertise, dedication, and a proven process. Panta's Product Development services guide you through every phase of the product lifecycle.",
-            "marks": []
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "Bringing a product from concept to market requires expertise, dedication, and a proven process. Panta's Product Development services guide you through every phase of the product lifecycle.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "From initial ideation and design to development, testing, and launch, we work with you to create products that not only meet market needs but exceed user expectations. Our comprehensive approach ensures your product is built for success from day one.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
           }
         ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "From initial ideation and design to development, testing, and launch, we work with you to create products that not only meet market needs but exceed user expectations. Our comprehensive approach ensures your product is built for success from day one.",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "h2",
-        "children": [
-          {
-            "_type": "span",
-            "text": "Our Product Development Services",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Product Ideation & Design",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Product Development & Testing",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Product Launch & Maintenance",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Product Support & Training",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Product Consulting",
-            "marks": []
-          }
-        ],
-        "markDefs": []
+        "serviceList": [
+          "Product Ideation & Design",
+          "Product Development & Testing",
+          "Product Launch & Maintenance",
+          "Product Support & Training",
+          "Product Consulting"
+        ]
       }
     ]
   },
   {
     "_type": "service",
     "title": "Web Development",
-    "category": "web",
+    "category": "product-web",
     "slug": {
       "_type": "slug",
       "current": "web-development"
     },
     "description": "Build powerful, scalable web applications that engage users and drive business results. We create modern, responsive websites and web applications tailored to your needs.",
-    "content": [
+    "sections": [
       {
-        "_type": "block",
-        "style": "normal",
-        "children": [
+        "_type": "section",
+        "type": "serviceDetails",
+        "content": [
           {
-            "_type": "span",
-            "text": "In today's digital-first world, your web presence is often the first impression customers have of your business. Panta's Web Development services create exceptional online experiences that convert visitors into customers.",
-            "marks": []
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "In today's digital-first world, your web presence is often the first impression customers have of your business. Panta's Web Development services create exceptional online experiences that convert visitors into customers.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "We build modern, responsive websites and web applications using cutting-edge technologies. From initial design to deployment and ongoing maintenance, we ensure your web presence is fast, secure, and optimized for success.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
           }
         ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "We build modern, responsive websites and web applications using cutting-edge technologies. From initial design to deployment and ongoing maintenance, we ensure your web presence is fast, secure, and optimized for success.",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "h2",
-        "children": [
-          {
-            "_type": "span",
-            "text": "Our Web Development Services",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Web Design & Development",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Web Testing & Launch",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Web Maintenance & Support",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Web Training & Consulting",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      }
-    ]
-  },
-  {
-    "_type": "service",
-    "title": "Digital Marketing",
-    "category": "marketing",
-    "slug": {
-      "_type": "slug",
-      "current": "digital-marketing"
-    },
-    "description": "Amplify your online presence and reach your target audience with data-driven digital marketing strategies that deliver measurable results.",
-    "content": [
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "Having a great product or service is only half the battle—you need to make sure your target audience knows about it. Panta's Digital Marketing services help you reach, engage, and convert customers through proven digital strategies.",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "Our data-driven approach combines SEO, SEM, social media, email, and content marketing to create comprehensive campaigns that drive real business results. We track, measure, and optimize every campaign to ensure maximum ROI.",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "h2",
-        "children": [
-          {
-            "_type": "span",
-            "text": "Our Digital Marketing Services",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Search Engine Optimization (SEO)",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Search Engine Marketing (SEM)",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Social Media Marketing",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Email Marketing",
-            "marks": []
-          }
-        ],
-        "markDefs": []
-      },
-      {
-        "_type": "block",
-        "style": "normal",
-        "children": [
-          {
-            "_type": "span",
-            "text": "• Content Marketing",
-            "marks": []
-          }
-        ],
-        "markDefs": []
+        "serviceList": [
+          "Web Design & Development",
+          "Web Testing & Launch",
+          "Web Maintenance & Support",
+          "Web Training & Consulting"
+        ]
       }
     ]
   }

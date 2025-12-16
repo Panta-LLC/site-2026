@@ -10,11 +10,5 @@
     "title": "Product and Web Development",
     "value": "product-web",
     "order": 2
-  },
-  {
-    "_type": "serviceCategory",
-    "title": "Digital Marketing",
-    "value": "marketing",
-    "order": 3
   }
 ]

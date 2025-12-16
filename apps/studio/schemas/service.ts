@@ -10,6 +10,9 @@ export default defineType({
       name: "category",
       type: "reference",
       to: [{ type: "serviceCategory" }],
+      options: {
+        weak: true, // Allow deletion of category even if referenced
+      } as any,
       validation: (Rule) => Rule.required(),
     }),
     defineField({

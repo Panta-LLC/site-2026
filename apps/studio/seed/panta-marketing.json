@@ -17,7 +17,7 @@
           "children": [
             {
               "_type": "span",
-              "text": "Panta LLC delivers comprehensive technology consulting, product development, web solutions, and digital marketing services. We partner with businesses to turn innovative ideas into reality, optimize operations, and drive growth through cutting-edge technology and strategic expertise.",
+              "text": "Panta LLC delivers comprehensive technology consulting, product development, and web solutions. We partner with businesses to turn innovative ideas into reality, optimize operations, and drive growth through cutting-edge technology and strategic expertise.",
               "marks": []
             }
           ],
@@ -36,7 +36,7 @@
           "children": [
             {
               "_type": "span",
-              "text": "We offer end-to-end solutions across four core service areas, each designed to help your business thrive in today's digital landscape.",
+              "text": "We offer end-to-end solutions across three core service areas, each designed to help your business thrive in today's digital landscape.",
               "marks": []
             }
           ],
@@ -319,97 +319,6 @@
     },
     {
       "_type": "section",
-      "type": "features",
-      "heading": "Digital Marketing",
-      "content": [
-        {
-          "_type": "block",
-          "style": "normal",
-          "children": [
-            {
-              "_type": "span",
-              "text": "Amplify your online presence and reach your target audience with data-driven digital marketing strategies that deliver measurable results.",
-              "marks": []
-            }
-          ],
-          "markDefs": []
-        },
-        {
-          "_type": "block",
-          "style": "normal",
-          "children": [
-            {
-              "_type": "span",
-              "text": "Key Services:",
-              "marks": ["strong"]
-            }
-          ],
-          "markDefs": []
-        },
-        {
-          "_type": "block",
-          "style": "normal",
-          "children": [
-            {
-              "_type": "span",
-              "text": "• Search Engine Optimization (SEO)",
-              "marks": []
-            }
-          ],
-          "markDefs": []
-        },
-        {
-          "_type": "block",
-          "style": "normal",
-          "children": [
-            {
-              "_type": "span",
-              "text": "• Search Engine Marketing (SEM)",
-              "marks": []
-            }
-          ],
-          "markDefs": []
-        },
-        {
-          "_type": "block",
-          "style": "normal",
-          "children": [
-            {
-              "_type": "span",
-              "text": "• Social Media Marketing",
-              "marks": []
-            }
-          ],
-          "markDefs": []
-        },
-        {
-          "_type": "block",
-          "style": "normal",
-          "children": [
-            {
-              "_type": "span",
-              "text": "• Email Marketing",
-              "marks": []
-            }
-          ],
-          "markDefs": []
-        },
-        {
-          "_type": "block",
-          "style": "normal",
-          "children": [
-            {
-              "_type": "span",
-              "text": "• Content Marketing",
-              "marks": []
-            }
-          ],
-          "markDefs": []
-        }
-      ]
-    },
-    {
-      "_type": "section",
       "type": "cta",
       "heading": "Ready to Get Started?",
       "content": [
@@ -419,7 +328,7 @@
           "children": [
             {
               "_type": "span",
-              "text": "Let's discuss how Panta can help transform your business. Whether you need strategic consulting, product development, web solutions, or digital marketing expertise, we're here to help you succeed.",
+              "text": "Let's discuss how Panta can help transform your business. Whether you need strategic consulting, product development, or web solutions, we're here to help you succeed.",
               "marks": []
             }
           ],

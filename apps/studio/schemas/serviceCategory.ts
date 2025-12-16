@@ -34,6 +34,68 @@ export default defineType({
       description: "Display order (lower numbers appear first)",
       validation: (Rule) => Rule.min(0),
     }),
+    // Hero Section Fields
+    defineField({
+      name: "heroHeading",
+      type: "string",
+      description: "Optional override for hero heading (defaults to title if empty)",
+    }),
+    defineField({
+      name: "heroDescription",
+      type: "text",
+      description: "Hero section description/value proposition",
+    }),
+    // Overview Section
+    defineField({
+      name: "overview",
+      type: "array",
+      of: [{ type: "block" }],
+      description: "Category overview content (rich text)",
+    }),
+    // Benefits Section
+    defineField({
+      name: "benefits",
+      type: "array",
+      of: [{ type: "benefit" }],
+      description: "Key benefits or features of this category",
+    }),
+    // Process/Methodology Section
+    defineField({
+      name: "process",
+      type: "array",
+      of: [{ type: "block" }],
+      description: "Process or methodology content (rich text)",
+    }),
+    // Flexible Sections
+    defineField({
+      name: "sections",
+      type: "array",
+      of: [{ type: "section" }],
+      description: "Additional flexible sections (hero, features, CTA, etc.)",
+    }),
+    // SEO
+    defineField({
+      name: "seo",
+      type: "seo",
+      description: "SEO metadata for this category page",
+    }),
+    // CTA Section
+    defineField({
+      name: "ctaHeading",
+      type: "string",
+      description: "Call-to-action section heading",
+    }),
+    defineField({
+      name: "ctaContent",
+      type: "text",
+      description: "Call-to-action section description",
+    }),
+    defineField({
+      name: "ctaButtonText",
+      type: "string",
+      description: "CTA button text (defaults to 'Contact Us' if empty)",
+      initialValue: "Contact Us",
+    }),
   ],
   preview: {
     select: {

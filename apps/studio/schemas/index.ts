@@ -6,5 +6,6 @@ import experiment from "./experiment";
 import siteConfig from "./siteConfig";
 import serviceCategory from "./serviceCategory";
 import service from "./service";
+import benefit from "./benefit";
 
-export default [page, section, seo, featureFlag, experiment, siteConfig, serviceCategory, service];
+export default [page, section, seo, featureFlag, experiment, siteConfig, serviceCategory, service, benefit];

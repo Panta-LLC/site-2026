@@ -32,17 +32,47 @@ export function Feature({ section }: { section?: any }) {
     return String(content);
   };
 
+  // Check if section has benefits array (for category pages)
+  const benefits = section?.benefits || [];
+
   return (
     <section className="px-6 py-16 sm:px-8 lg:px-12 bg-white dark:bg-neutral-900">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto">
         {section?.heading && (
-          <h2 className="text-3xl font-bold tracking-tight col-span-full text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-center mb-12">
             {section.heading}
           </h2>
         )}
         {section?.content && (
-          <div className="prose dark:prose-invert mt-4 col-span-full text-center">
+          <div className="prose dark:prose-invert mt-4 text-center mb-12">
             {renderContent(section.content)}
+          </div>
+        )}
+        {benefits.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {benefits.map((benefit: any, i: number) => (
+              <div key={benefit._key || i} className="p-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                {benefit.title && (
+                  <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
+                )}
+                {benefit.description && (
+                  <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                    {benefit.description}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {items.map((item, i) => (
+              <div key={i} className="p-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         )}
       </div>

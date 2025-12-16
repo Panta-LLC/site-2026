@@ -1,46 +1,11 @@
-import { sanityClient } from "@panta/lib/src/sanity/client";
+import { getServiceBySlug } from "@panta/lib/src/sanity/queries";
 import { Hero } from "@panta/ui/src/sections/Hero";
 import { Feature } from "@panta/ui/src/sections/Features";
+import { ServicePreviews } from "@panta/ui/src/sections/ServicePreviews";
+import { ServiceDetails } from "@panta/ui/src/sections/ServiceDetails";
+import { CTA } from "@panta/ui/src/sections/CTA";
 import { Footer } from "@panta/ui/src/sections/Footer";
 import { notFound } from "next/navigation";
-
-async function getService(slug: string) {
-  const query = `*[_type == "service" && slug.current == $slug][0]{
-    _id,
-    title,
-    category->{
-      _id,
-      title,
-      value
-    },
-    description,
-    slug,
-    content,
-    sections[]{
-      type,
-      heading,
-      content,
-      services[]->{
-        _id,
-        title,
-        category->{
-          _id,
-          title,
-          value
-        },
-        description,
-        slug
-      }
-    },
-    seo
-  }`;
-  try {
-    const data = await sanityClient.fetch(query, { slug });
-    return data;
-  } catch (e) {
-    return null;
-  }
-}
 
 const Section = ({ section }: { section: any }) => {
   switch (section.type) {
@@ -49,6 +14,12 @@ const Section = ({ section }: { section: any }) => {
     case "feature":
     case "features":
       return <Feature section={section} />;
+    case "servicePreviews":
+      return <ServicePreviews section={section} />;
+    case "serviceDetails":
+      return <ServiceDetails section={section} />;
+    case "cta":
+      return <CTA section={section} />;
     default:
       return null;
   }
@@ -81,7 +52,7 @@ const getCategoryTitle = (category: any): string => {
 };
 
 export default async function ServicePage({ params }: { params: { slug: string } }) {
-  const service = await getService(params.slug);
+  const service = await getServiceBySlug(params.slug);
 
   if (!service) {
     notFound();
@@ -132,7 +103,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const service = await getService(params.slug);
+  const service = await getServiceBySlug(params.slug);
 
   if (!service) {
     return {

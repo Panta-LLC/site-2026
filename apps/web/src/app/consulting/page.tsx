@@ -1,34 +1,11 @@
+import { getHomepage } from "@panta/lib/src/sanity/queries";
 import { Hero } from "@panta/ui/src/sections/Hero";
 import { Feature } from "@panta/ui/src/sections/Features";
 import { ServicePreviews } from "@panta/ui/src/sections/ServicePreviews";
+import { ServiceDetails } from "@panta/ui/src/sections/ServiceDetails";
 import { CTA } from "@panta/ui/src/sections/CTA";
 import { Footer } from "@panta/ui/src/sections/Footer";
-import { sanityClient } from "@panta/lib/src/sanity/client";
 import HomeSplash from "../../components/HomeSplash";
-
-async function getConsultingPage() {
-  const query = `*[_type == "page" && slug.current == "home"][0]{
-    title,
-    sections[]{
-      type,
-      heading,
-      content,
-      services[]->{
-        _id,
-        title,
-        category,
-        description,
-        slug
-      }
-    }
-  }`;
-  try {
-    const data = await sanityClient.fetch(query);
-    return data;
-  } catch (e) {
-    return null;
-  }
-}
 
 const Section = ({ section }: { section: any }) => {
   console.log("Rendering section of type:", section.type);
@@ -40,13 +17,17 @@ const Section = ({ section }: { section: any }) => {
       return <Feature section={section} />;
     case "servicePreviews":
       return <ServicePreviews section={section} />;
+    case "serviceDetails":
+      return <ServiceDetails section={section} />;
+    case "cta":
+      return <CTA section={section} />;
     default:
       return null;
   }
 };
 
 export default async function ConsultingPage() {
-  const data = await getConsultingPage();
+  const data = await getHomepage();
   return (
     <HomeSplash>
       <main>
