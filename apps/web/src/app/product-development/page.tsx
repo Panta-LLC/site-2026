@@ -1,18 +1,13 @@
-import { sanityClient } from "@panta/lib/src/sanity/client";
 import { Hero } from "@panta/ui/src/sections/Hero";
 import { Feature } from "@panta/ui/src/sections/Features";
 import { Footer } from "@panta/ui/src/sections/Footer";
-import { notFound } from "next/navigation";
+import { sanityClient } from "@panta/lib/src/sanity/client";
 
-async function getService(slug: string) {
-  const query = `*[_type == "service" && slug.current == $slug][0]{
+async function getProductDevelopmentPage() {
+  const query = `*[_type == "service" && slug.current == "product-development"][0]{
     _id,
     title,
-    category->{
-      _id,
-      title,
-      value
-    },
+    category,
     description,
     slug,
     content,
@@ -23,11 +18,7 @@ async function getService(slug: string) {
       services[]->{
         _id,
         title,
-        category->{
-          _id,
-          title,
-          value
-        },
+        category,
         description,
         slug
       }
@@ -35,7 +26,7 @@ async function getService(slug: string) {
     seo
   }`;
   try {
-    const data = await sanityClient.fetch(query, { slug });
+    const data = await sanityClient.fetch(query);
     return data;
   } catch (e) {
     return null;
@@ -74,17 +65,23 @@ const renderContent = (content: any) => {
   return String(content);
 };
 
-const getCategoryTitle = (category: any): string => {
-  if (!category) return "Uncategorized";
-  if (typeof category === "string") return category;
-  return category.title || category.value || "Uncategorized";
-};
-
-export default async function ServicePage({ params }: { params: { slug: string } }) {
-  const service = await getService(params.slug);
+export default async function ProductDevelopmentPage() {
+  const service = await getProductDevelopmentPage();
 
   if (!service) {
-    notFound();
+    return (
+      <main>
+        <section className="px-6 py-24 sm:px-8 lg:px-12 text-white bg-gray-900 min-h-[60vh] flex content-center flex-col justify-center items-center text-center">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+            Product and Web Development
+          </h1>
+          <p className="text-lg mt-4 text-neutral-300">
+            Content coming soon...
+          </p>
+        </section>
+        <Footer />
+      </main>
+    );
   }
 
   return (
@@ -93,7 +90,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
       <section className="px-6 py-24 sm:px-8 lg:px-12 text-white bg-gray-900 min-h-[60vh] flex content-center flex-col justify-center items-center text-center">
         <div className="mb-4">
           <span className="text-sm font-semibold text-neutral-400 uppercase tracking-wide">
-            {getCategoryTitle(service.category)}
+            Product and Web Development
           </span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight w-[80%] max-w-[900px]">
@@ -131,12 +128,13 @@ export default async function ServicePage({ params }: { params: { slug: string }
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const service = await getService(params.slug);
+export async function generateMetadata() {
+  const service = await getProductDevelopmentPage();
 
   if (!service) {
     return {
-      title: "Service Not Found",
+      title: "Product and Web Development | Panta LLC",
+      description: "Product and Web Development services from Panta LLC",
     };
   }
 
@@ -145,3 +143,4 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     description: service.description,
   };
 }
+

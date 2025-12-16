@@ -30,7 +30,7 @@ export function Hero({ section }: { section?: any }) {
   };
 
   const heading = section?.heading ?? "Welcome to Panta";
-  console.log("Hero section content:", section);
+
   const content = section?.content ?? [
     {
       _key: "default",
@@ -41,12 +41,14 @@ export function Hero({ section }: { section?: any }) {
   ];
 
   return (
-    <section className="px-6 py-24 sm:px-8 lg:px-12 text-white bg-gray-900 min-h-screen flex content-center flex-col justify-center items-center text-center">
-      <h1 className="text-4xl sm:text-5xl font-bold tracking-tight w-[80%] max-w-[900px]">
-        {heading}
-      </h1>
-      <div className="text-lg prose dark:prose-invert mt-4 w-[70%] max-w-[900px]">
-        {renderContent(content)}
+    <section className="py-24 text-white bg-gray-900 pt-32">
+      <div className="max-w-6xl sm:px-8 lg:px-12 mx-auto flex  flex-col justify-center items-center md:items-start text-center md:text-left">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight w-[80%] max-w-[900px]">
+          {heading}
+        </h1>
+        <div className="text-lg prose dark:prose-invert mt-4 w-[70%] max-w-[900px]">
+          {renderContent(content)}
+        </div>
       </div>
     </section>
   );

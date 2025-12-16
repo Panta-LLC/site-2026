@@ -1,0 +1,20 @@
+[
+  {
+    "_type": "serviceCategory",
+    "title": "Business Technology Consulting",
+    "value": "consulting",
+    "order": 1
+  },
+  {
+    "_type": "serviceCategory",
+    "title": "Product and Web Development",
+    "value": "product-web",
+    "order": 2
+  },
+  {
+    "_type": "serviceCategory",
+    "title": "Digital Marketing",
+    "value": "marketing",
+    "order": 3
+  }
+]

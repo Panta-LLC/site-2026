@@ -1,10 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
+interface ServiceCategory {
+  _id: string;
+  title: string;
+  value: string;
+}
+
 interface Service {
   _id: string;
   title: string;
-  category: string;
+  category?: ServiceCategory | string | null;
   description: string;
   slug: {
     current: string;
@@ -18,11 +24,10 @@ interface ServicePreviewsProps {
   };
 }
 
-const categoryLabels: Record<string, string> = {
-  consulting: "Business/Technology Consulting",
-  product: "Product Development",
-  web: "Web Development",
-  marketing: "Digital Marketing",
+const getCategoryTitle = (category: ServiceCategory | string | null | undefined): string => {
+  if (!category) return "Uncategorized";
+  if (typeof category === "string") return category;
+  return category.title || category.value || "Uncategorized";
 };
 
 export function ServicePreviews({ section }: ServicePreviewsProps) {
@@ -48,7 +53,7 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
             >
               <div className="mb-2">
                 <span className="text-sm font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wide">
-                  {categoryLabels[service.category] || service.category}
+                  {getCategoryTitle(service.category)}
                 </span>
               </div>
               <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">

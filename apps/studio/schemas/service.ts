@@ -6,27 +6,20 @@ export default defineType({
   type: "document",
   fields: [
     defineField({ name: "title", type: "string", validation: (Rule) => Rule.required() }),
-    defineField({ 
-      name: "category", 
-      type: "string",
-      options: {
-        list: [
-          { title: "Business/Technology Consulting", value: "consulting" },
-          { title: "Product Development", value: "product" },
-          { title: "Web Development", value: "web" },
-          { title: "Digital Marketing", value: "marketing" },
-        ],
-      },
+    defineField({
+      name: "category",
+      type: "reference",
+      to: [{ type: "serviceCategory" }],
       validation: (Rule) => Rule.required(),
     }),
-    defineField({ 
-      name: "slug", 
-      type: "slug", 
+    defineField({
+      name: "slug",
+      type: "slug",
       options: { source: "title" },
       validation: (Rule) => Rule.required(),
     }),
-    defineField({ 
-      name: "description", 
+    defineField({
+      name: "description",
       type: "text",
       description: "Short description for preview cards",
       validation: (Rule) => Rule.required().max(200),
@@ -44,20 +37,14 @@ export default defineType({
   preview: {
     select: {
       title: "title",
-      category: "category",
+      categoryTitle: "category.title",
+      categoryValue: "category.value",
     },
-    prepare({ title, category }) {
-      const categoryLabels: Record<string, string> = {
-        consulting: "Business/Technology Consulting",
-        product: "Product Development",
-        web: "Web Development",
-        marketing: "Digital Marketing",
-      };
+    prepare({ title, categoryTitle, categoryValue }) {
       return {
         title,
-        subtitle: categoryLabels[category] || category,
+        subtitle: categoryTitle || categoryValue || "No category",
       };
     },
   },
 });
-

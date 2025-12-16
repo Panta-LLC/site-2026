@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 type MenuItem = { title?: string; url?: string; internal?: { current?: string } };
@@ -16,8 +17,26 @@ export function Header({
   menu?: MenuItem[];
   notificationBar?: Notification;
 }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="w-full fixed top-0 left-0 bg-transparent">
+    <header
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white dark:bg-neutral-900 shadow-md border-b border-slate-600 dark:border-neutral-800"
+          : "bg-transparent"
+      }`}
+    >
       {notificationBar?.enabled && (
         <div
           className={`w-full text-sm px-4 py-2 text-center ${
@@ -45,14 +64,30 @@ export function Header({
               src={logo.asset.url}
               alt={logo.alt || title || "Site logo"}
               width={150}
-              className="rounded"
+              className="rounded transition-all duration-300"
+              style={
+                isScrolled
+                  ? {
+                      filter:
+                        "brightness(0) saturate(100%) invert(8%) sepia(5%) saturate(4%) hue-rotate(314deg) brightness(95%) contrast(93%)",
+                    }
+                  : {}
+              }
             />
           ) : (
-            <div className="w-9 h-9 bg-neutral-200 dark:bg-neutral-700 rounded" />
+            <div
+              className={`w-9 h-9 rounded transition-colors duration-300 ${
+                isScrolled ? "bg-[#111827]" : "bg-neutral-200 dark:bg-neutral-700"
+              }`}
+            />
           )}
         </Link>
 
-        <nav className="md:flex gap-6 bg-transparent text-white">
+        <nav
+          className={`md:flex gap-6 transition-all duration-300 ${
+            isScrolled ? "text-[#111827]" : "text-white"
+          }`}
+        >
           {menu &&
             menu.map((m, i) => {
               const href = m.url || m.internal?.current || "#";
