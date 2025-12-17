@@ -18,6 +18,7 @@ export function Header({
   notificationBar?: Notification;
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +29,41 @@ export function Header({
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isMobileMenuOpen && !target.closest("header")) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    // Close on escape key
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isMobileMenuOpen]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <header
@@ -83,8 +119,9 @@ export function Header({
           )}
         </Link>
 
+        {/* Desktop Navigation */}
         <nav
-          className={`md:flex gap-6 transition-all duration-300 ${
+          className={`hidden md:flex gap-6 transition-all duration-300 ${
             isScrolled ? "text-[#111827]" : "text-white"
           }`}
         >
@@ -98,6 +135,68 @@ export function Header({
               );
             })}
         </nav>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          onClick={toggleMobileMenu}
+          className={`md:hidden p-2 transition-colors ${
+            isScrolled ? "text-[#111827]" : "text-white"
+          }`}
+          aria-label="Toggle menu"
+          aria-expanded={isMobileMenuOpen}
+        >
+          {isMobileMenuOpen ? (
+            // Close icon (X)
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            // Hamburger icon
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          )}
+        </button>
+
+        {/* Mobile Dropdown Menu */}
+        {isMobileMenuOpen && (
+          <div
+            className={`absolute top-full left-0 right-0 md:hidden transition-all duration-300 ${
+              isScrolled
+                ? "bg-white dark:bg-neutral-900 border-b border-slate-600 dark:border-neutral-800 shadow-lg"
+                : "bg-gray-900"
+            }`}
+          >
+            <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
+              {menu &&
+                menu.map((m, i) => {
+                  const href = m.url || m.internal?.current || "#";
+                  return (
+                    <a
+                      key={i}
+                      href={href}
+                      onClick={closeMobileMenu}
+                      className={`text-sm hover:underline py-2 ${
+                        isScrolled ? "text-[#111827]" : "text-white"
+                      }`}
+                    >
+                      {m.title}
+                    </a>
+                  );
+                })}
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );

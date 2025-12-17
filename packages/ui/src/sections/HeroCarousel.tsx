@@ -5,7 +5,9 @@ import Link from "next/link";
 
 interface Slide {
   id: string;
+  subheading: string;
   title: string;
+  linkTitle: string;
   description: string;
   link?: string;
 }
@@ -30,15 +32,18 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
   const slides: Slide[] = [
     {
       id: "mission",
+      subheading: "Our Mission",
       title: missionPage?.title || "Our Mission",
-      description:
-        missionPage?.description ||
-        "We partner with businesses to turn innovative ideas into reality, optimize operations, and drive growth through cutting-edge technology and strategic expertise.",
+      linkTitle: "Our Mission",
+      description: missionPage?.description,
+
       link: missionPage?.slug?.current ? `/${missionPage.slug.current}` : undefined,
     },
     {
       id: "consulting",
-      title: "Business Technology Consulting",
+      subheading: "Service",
+      title: consultingService?.title || "Business Technology Consulting",
+      linkTitle: "Business Technology Consulting",
       description:
         consultingService?.description ||
         "Strategic technology guidance that transforms your business operations. From initial strategy development to ongoing support, we help you navigate complex technology decisions.",
@@ -46,7 +51,9 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
     },
     {
       id: "product-web",
-      title: "Product and Web Development",
+      subheading: "Service",
+      title: productWebService?.title || "Product and Web Development",
+      linkTitle: "Product and Web Development",
       description:
         productWebService?.description ||
         "Turn your vision into market-ready products and powerful web applications. We create solutions that engage users and drive business results.",
@@ -111,9 +118,9 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
   };
 
   return (
-    <section className="relative px-6 py-24 sm:px-8 lg:px-12 text-white bg-gradient-to-b from-gray-900 to-gray-800 min-h-[85vh] flex content-center flex-col justify-center items-center text-center overflow-hidden">
+    <section className="relative px-6 py-24 sm:px-8 lg:px-12 text-white bg-gradient-to-b from-gray-900 to-gray-800 min-h-[85vh] flex content-center flex-col justify-center items-center overflow-hidden">
       {/* Slides Container */}
-      <div className="relative w-full max-w-5xl mx-auto">
+      <div className="relative w-full px-6">
         <div className="relative h-[400px] md:h-[500px] flex items-center justify-center">
           {slides.map((slide, index) => (
             <div
@@ -122,10 +129,13 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
                 index === currentSlide ? "opacity-100" : "opacity-0"
               }`}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
+              <p className="text-sm md:text-base text-neutral-400 mb-4 text-center">
+                {slide.subheading}
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl max-w-3xlfont-bold tracking-tight mb-6">
                 {slide.title}
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl mt-6 mb-10 text-neutral-200 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl lg:text-2xl mt-6 mb-10 text-neutral-200 max-w-3xl leading-relaxed">
                 {slide.description}
               </p>
               {slide.link && (
@@ -156,9 +166,9 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
                   ? "text-white border-b-2 border-white"
                   : "text-neutral-400 hover:text-neutral-200"
               }`}
-              aria-label={`Go to ${slide.title} slide`}
+              aria-label={`Go to ${slide.linkTitle} slide`}
             >
-              {slide.title}
+              {slide.linkTitle}
             </button>
           ))}
         </div>

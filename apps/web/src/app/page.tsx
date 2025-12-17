@@ -98,7 +98,7 @@ export default async function HomePage() {
             </div>
             <ServicePreviews
               section={{
-                heading: "",
+                heading: undefined,
                 serviceCategories: services,
               }}
             />

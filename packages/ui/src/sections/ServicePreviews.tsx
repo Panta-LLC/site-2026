@@ -30,7 +30,7 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
   // Support both serviceCategories (new) and services (legacy)
   const serviceCategories = section?.serviceCategories || [];
   const services = section?.services || [];
-  const heading = section?.heading || "Our Services";
+  const heading = section?.heading;
 
   // If serviceCategories are provided, use those; otherwise fall back to services
   const items =
@@ -55,7 +55,9 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
   return (
     <section className="px-6 py-16 sm:px-8 lg:px-12 bg-white dark:bg-neutral-900">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold tracking-tight text-center mb-12">{heading}</h2>
+        {heading && (
+          <h2 className="text-3xl font-bold tracking-tight text-center mb-12">{heading}</h2>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {items.map((item) => (
             <Link
