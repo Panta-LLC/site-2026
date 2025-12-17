@@ -117,11 +117,21 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
     setIsPlaying(false);
   };
 
+  const goToPrevious = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setIsPlaying(false);
+  };
+
+  const goToNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setIsPlaying(false);
+  };
+
   return (
     <section className="relative px-6 py-24 sm:px-8 lg:px-12 text-white bg-gradient-to-b from-gray-900 to-gray-800 min-h-[85vh] flex content-center flex-col justify-center items-center overflow-hidden">
       {/* Slides Container */}
-      <div className="relative w-full px-6">
-        <div className="relative h-[400px] md:h-[500px] flex items-center justify-center">
+      <div className="relative w-full px-6 max-w-5xl min-h-[450px] md:min-h-[400px]">
+        <div className="relative flex items-center justify-center">
           {slides.map((slide, index) => (
             <div
               key={slide.id}
@@ -129,10 +139,10 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
                 index === currentSlide ? "opacity-100" : "opacity-0"
               }`}
             >
-              <p className="text-sm md:text-base text-neutral-400 mb-4 text-center">
+              <p className="text-sm font-medium md:text-base text-neutral-400 mb-2 uppercase">
                 {slide.subheading}
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl max-w-3xlfont-bold tracking-tight mb-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl max-w-3xlfont-bold tracking-tight mb-4">
                 {slide.title}
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl mt-6 mb-10 text-neutral-200 max-w-3xl leading-relaxed">
@@ -153,10 +163,10 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
         </div>
       </div>
 
-      {/* Navigation Text Buttons - Bottom Center */}
+      {/* Navigation - Bottom Center */}
       <div className="absolute bottom-8 left-0 right-0 flex items-center">
-        {/* Centered Navigation Buttons */}
-        <div className="flex-1 flex justify-center gap-4">
+        {/* Desktop Navigation - All Buttons */}
+        <div className="hidden md:flex flex-1 justify-center gap-4">
           {slides.map((slide, index) => (
             <button
               key={slide.id}
@@ -173,15 +183,57 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
           ))}
         </div>
 
+        {/* Mobile Navigation - Prev, Active Button, Next */}
+        <div className="md:hidden flex-1 flex items-center justify-center gap-4">
+          {/* Previous Button */}
+          <button
+            onClick={goToPrevious}
+            className="p-2 text-white hover:text-neutral-200 transition-colors"
+            aria-label="Previous slide"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          {/* Active Slide Button */}
+          <button
+            onClick={() => goToSlide(currentSlide)}
+            className="px-4 py-2 text-sm font-medium text-white border-b-2 border-white"
+            aria-label={`Current slide: ${slides[currentSlide]?.linkTitle}`}
+          >
+            {slides[currentSlide]?.linkTitle}
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={goToNext}
+            className="p-2 text-white hover:text-neutral-200 transition-colors"
+            aria-label="Next slide"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
         {/* Play/Pause Button - Fixed to Right with Timer */}
-        <div className="absolute right-8">
+        <div className="absolute right-4 md:right-8">
           <button
             onClick={togglePlayPause}
-            className="relative w-12 h-12 flex items-center justify-center text-white hover:text-neutral-200 transition-colors"
+            className="relative w-8 h-8 md:w-12 md:h-12 flex items-center justify-center text-white hover:text-neutral-200 transition-colors"
             aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
           >
             {/* Circular Progress Indicator */}
-            <svg className="absolute inset-0 w-12 h-12 transform -rotate-90" viewBox="0 0 48 48">
+            <svg
+              className="absolute inset-0 w-8 h-8 md:w-12 md:h-12 transform -rotate-90"
+              viewBox="0 0 48 48"
+            >
               {/* Background circle */}
               <circle
                 cx="24"
@@ -208,13 +260,21 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
             {/* Play/Pause Icon */}
             {isPlaying ? (
               // Pause icon (two vertical bars)
-              <svg className="w-5 h-5 relative z-10" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-4 h-4 md:w-5 md:h-5 relative z-10"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <rect x="6" y="4" width="4" height="16" rx="1" />
                 <rect x="14" y="4" width="4" height="16" rx="1" />
               </svg>
             ) : (
               // Play icon (triangle)
-              <svg className="w-5 h-5 relative z-10 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-4 h-4 md:w-5 md:h-5 relative z-10 ml-0.5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path d="M8 5v14l11-7z" />
               </svg>
             )}
