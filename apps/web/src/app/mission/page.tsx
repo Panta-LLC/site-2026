@@ -1,4 +1,4 @@
-import { getServiceBySlug } from "@panta/lib/src/sanity/queries";
+import { getPageBySlug } from "@panta/lib/src/sanity/queries";
 import { Hero } from "@panta/ui/src/sections/Hero";
 import { Feature } from "@panta/ui/src/sections/Features";
 import { ServicePreviews } from "@panta/ui/src/sections/ServicePreviews";
@@ -45,51 +45,36 @@ const renderContent = (content: any) => {
   return String(content);
 };
 
-const getCategoryTitle = (category: any): string => {
-  if (!category) return "Uncategorized";
-  if (typeof category === "string") return category;
-  return category.title || category.value || "Uncategorized";
-};
+export default async function MissionPage() {
+  const page = await getPageBySlug("mission");
 
-export default async function ServicePage({ params }: { params: { slug: string } }) {
-  const service = await getServiceBySlug(params.slug);
-
-  if (!service) {
+  if (!page) {
     notFound();
   }
 
   return (
     <main>
       {/* Hero Section */}
-      <section className="px-6 py-24 sm:px-8 lg:px-12 min-h-[60vh] flex content-center flex-col justify-center items-center text-center">
-        <div className="mb-4">
-          <span className="text-sm font-semibold text-neutral-400 uppercase tracking-wide">
-            {getCategoryTitle(service.category)}
-          </span>
-        </div>
+      <section className="px-6 pt-24 pb-8 sm:px-8 lg:px-12 flex content-center flex-col justify-center items-center text-center">
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight w-[80%] max-w-[900px]">
-          {service.title}
+          {page.title}
         </h1>
-        {service.description && (
-          <p className="text-lg mt-4 w-[70%] max-w-[900px] text-neutral-300">
-            {service.description}
-          </p>
+        {page.description && (
+          <p className="text-lg mt-4 w-[70%] max-w-[900px]">{page.description}</p>
         )}
       </section>
 
       {/* Main Content */}
       <section className="px-6 py-16 sm:px-8 lg:px-12 bg-white dark:bg-neutral-900">
         <div className="max-w-4xl mx-auto">
-          {service.content && (
-            <div className="prose dark:prose-invert max-w-none">
-              {renderContent(service.content)}
-            </div>
+          {page.content && (
+            <div className="prose dark:prose-invert max-w-none">{renderContent(page.content)}</div>
           )}
 
           {/* Render CMS sections if available */}
-          {service.sections?.length ? (
+          {page.sections?.length ? (
             <div className="mt-12">
-              {service.sections.map((s: any, i: number) => (
+              {page.sections.map((s: any, i: number) => (
                 <Section key={i} section={s} />
               ))}
             </div>
@@ -102,17 +87,17 @@ export default async function ServicePage({ params }: { params: { slug: string }
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const service = await getServiceBySlug(params.slug);
+export async function generateMetadata() {
+  const page = await getPageBySlug("mission");
 
-  if (!service) {
+  if (!page) {
     return {
-      title: "Service Not Found",
+      title: "Mission | Panta LLC",
     };
   }
 
   return {
-    title: `${service.title} | Panta LLC`,
-    description: service.description,
+    title: `${page.title} | Panta LLC`,
+    description: page.description || page.seo?.description,
   };
 }

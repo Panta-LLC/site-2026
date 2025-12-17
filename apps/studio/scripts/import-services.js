@@ -26,6 +26,31 @@ async function run() {
   for (const service of services) {
     const slug = service.slug.current;
     
+    // Resolve category reference if it's a string value
+    let categoryRef = service.category;
+    if (typeof service.category === "string") {
+      const categoryDoc = await client.fetch(
+        '*[_type == "serviceCategory" && value == $value][0] { _id }',
+        { value: service.category }
+      );
+      
+      if (categoryDoc && categoryDoc._id) {
+        categoryRef = {
+          _type: "reference",
+          _ref: categoryDoc._id,
+        };
+      } else {
+        console.warn(`Warning: Category "${service.category}" not found for service "${service.title}". Skipping category reference.`);
+        continue;
+      }
+    }
+    
+    // Prepare service data with resolved category reference
+    const serviceData = {
+      ...service,
+      category: categoryRef,
+    };
+    
     // Check if service already exists
     const existing = await client.fetch(
       '*[_type == "service" && slug.current == $slug][0] { _id }',
@@ -33,10 +58,10 @@ async function run() {
     );
 
     if (existing && existing._id) {
-      await client.patch(existing._id).set(service).commit();
+      await client.patch(existing._id).set(serviceData).commit();
       console.log(`Updated service: ${service.title} (${slug})`);
     } else {
-      const created = await client.create(service);
+      const created = await client.create(serviceData);
       console.log(`Created service: ${service.title} (${slug}) - ID: ${created._id}`);
     }
   }

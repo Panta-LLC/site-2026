@@ -10,5 +10,12 @@
     "title": "Product and Web Development",
     "value": "product-web",
     "order": 2
+  },
+  {
+    "_type": "serviceCategory",
+    "title": "Media Production",
+    "value": "media-production",
+    "description": "We produce high-quality media content for businesses and organizations.",
+    "order": 3
   }
 ]

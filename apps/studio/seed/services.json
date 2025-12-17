@@ -215,6 +215,58 @@
         ]
       }
     ]
+  },
+  {
+    "_type": "service",
+    "title": "Media Production",
+    "category": "media-production",
+    "slug": {
+      "_type": "slug",
+      "current": "media-production"
+    },
+    "description": "We produce high-quality media content for businesses and organizations.",
+    "sections": [
+      {
+        "_type": "section",
+        "type": "serviceDetails",
+        "content": [
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "At Panta, we produce high-quality media content that helps businesses and organizations communicate effectively with their audiences. Our comprehensive media production services cover everything from video and audio production to marketing, advertising, and creative services.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "Whether you need professional video content, strategic marketing campaigns, or creative branding solutions, our team brings expertise and creativity to every project. We work closely with you to understand your goals and deliver media that resonates with your audience and drives results.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "serviceList": [
+          "Video Production",
+          "Audio Production",
+          "Marketing",
+          "Advertising",
+          "Photography",
+          "Editing",
+          "Animation",
+          "Motion Graphics",
+          "Branding"
+        ]
+      }
+    ]
   }
 ]
-

@@ -12,8 +12,25 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          DEFAULT: "#0ea5e9",
-          dark: "#0284c7",
+          DEFAULT: "#002642",
+          dark: "#02040f",
+          accent: "#840032",
+          highlight: "#FFA90A",
+          light: "#e5dada",
+        },
+        // New color palette from Coolors
+        primary: {
+          DEFAULT: "#002642",
+          dark: "#02040f",
+        },
+        accent: {
+          DEFAULT: "#840032",
+        },
+        highlight: {
+          DEFAULT: "#e59500",
+        },
+        light: {
+          DEFAULT: "#e5dada",
         },
       },
       fontFamily: {
@@ -30,13 +47,7 @@ const config: Config = {
           "Arial",
           "sans-serif",
         ],
-        serif: [
-          "caecilia",
-          "Georgia",
-          "Times New Roman",
-          "Times",
-          "serif",
-        ],
+        serif: ["caecilia", "Georgia", "Times New Roman", "Times", "serif"],
       },
     },
   },

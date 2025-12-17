@@ -60,7 +60,7 @@ export function ServiceDetails({ section }: ServiceDetailsProps) {
             <ul className="space-y-3">
               {serviceList.map((service, index) => (
                 <li key={index} className="text-neutral-700 dark:text-neutral-300 flex items-start">
-                  <span className="text-blue-600 dark:text-blue-400 mr-2 mt-1">•</span>
+                  <span className="text-brand mr-2 mt-1">•</span>
                   <span>{service}</span>
                 </li>
               ))}

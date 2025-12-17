@@ -28,6 +28,12 @@ export default defineType({
       validation: (Rule) => Rule.required().max(200),
     }),
     defineField({
+      name: "isPrimary",
+      type: "boolean",
+      description: "Mark as primary service (defaults to true)",
+      initialValue: true,
+    }),
+    defineField({
       name: "content",
       title: "Content",
       description: "Full page content (Portable Text)",

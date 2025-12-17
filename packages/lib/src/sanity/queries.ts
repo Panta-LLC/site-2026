@@ -9,7 +9,15 @@ export async function getAllServiceCategories() {
     title,
     value,
     description,
-    order
+    order,
+    previewImage{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    mainHeading
   }`;
   try {
     const data = await sanityClient.fetch(query);
@@ -93,6 +101,7 @@ export async function getServiceBySlug(slug: string) {
     },
     description,
     slug,
+    isPrimary,
     content,
     sections[]{
       type,
@@ -140,7 +149,7 @@ export async function getServiceBySlug(slug: string) {
 }
 
 export async function getServicesByCategory(categoryValue: string) {
-  const query = `*[_type == "service" && category->value == $categoryValue && !(_id match "drafts.*")] | order(title asc) {
+  const query = `*[_type == "service" && category->value == $categoryValue && !(_id match "drafts.*")] | order(isPrimary desc, title asc) {
     _id,
     title,
     category->{
@@ -150,6 +159,7 @@ export async function getServicesByCategory(categoryValue: string) {
     },
     description,
     slug,
+    isPrimary,
     content,
     sections[]{
       type,
@@ -280,7 +290,36 @@ export async function getMissionPage() {
   const query = `*[_type == "page" && slug.current == "mission" && !(_id match "drafts.*")][0]{
     title,
     description,
-    slug
+    slug,
+    content,
+    sections[]{
+      type,
+      heading,
+      content,
+      buttonText,
+      buttonLink,
+      serviceList,
+      benefits[]{
+        _key,
+        title,
+        description,
+        icon
+      },
+      services[]->{
+        _id,
+        title,
+        category,
+        description,
+        slug
+      },
+      serviceCategories[]->{
+        _id,
+        title,
+        value,
+        description
+      }
+    },
+    seo
   }`;
   try {
     const data = await sanityClient.fetch(query);
@@ -289,4 +328,3 @@ export async function getMissionPage() {
     return null;
   }
 }
-

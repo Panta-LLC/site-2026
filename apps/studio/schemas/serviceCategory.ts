@@ -28,6 +28,20 @@ export default defineType({
       type: "text",
       description: "Optional description of this category",
     }),
+    // Service Preview Fields (for homepage display)
+    defineField({
+      name: "previewImage",
+      type: "image",
+      description: "Image for service preview on homepage",
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: "mainHeading",
+      type: "string",
+      description: "Main heading for service preview (e.g., 'BUILDING RELEVANCE')",
+    }),
     defineField({
       name: "order",
       type: "number",

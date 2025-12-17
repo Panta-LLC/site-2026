@@ -1,6 +1,7 @@
 export * from "./sections/Hero";
 export * from "./sections/HeroCarousel";
 export * from "./sections/Features";
+export * from "./sections/ProblemsWeSolve";
 export * from "./sections/ServicePreviews";
 export * from "./sections/ServiceDetails";
 export * from "./sections/CTA";

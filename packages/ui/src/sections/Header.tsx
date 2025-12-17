@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type MenuItem = { title?: string; url?: string; internal?: { current?: string } };
 type FooterCategory = { title?: string; links?: { label?: string; url?: string }[] };
@@ -17,7 +18,9 @@ export function Header({
   menu?: MenuItem[];
   notificationBar?: Notification;
 }) {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomepage = pathname === "/";
+  const [isScrolled, setIsScrolled] = useState(!isHomepage);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -25,6 +28,9 @@ export function Header({
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 20);
     };
+
+    // Check initial scroll position on mount
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -68,9 +74,7 @@ export function Header({
   return (
     <header
       className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white dark:bg-neutral-900 shadow-md border-b border-slate-600 dark:border-neutral-800"
-          : "bg-transparent"
+        isScrolled ? "bg-white dark:bg-neutral-900 border-highlight border-b-4" : "bg-transparent"
       }`}
     >
       {notificationBar?.enabled && (
@@ -113,7 +117,7 @@ export function Header({
           ) : (
             <div
               className={`w-9 h-9 rounded transition-colors duration-300 ${
-                isScrolled ? "bg-[#111827]" : "bg-neutral-200 dark:bg-neutral-700"
+                isScrolled ? "bg-black" : "bg-neutral-200 dark:bg-neutral-700"
               }`}
             />
           )}
@@ -121,15 +125,15 @@ export function Header({
 
         {/* Desktop Navigation */}
         <nav
-          className={`hidden md:flex gap-6 transition-all duration-300 ${
-            isScrolled ? "text-[#111827]" : "text-white"
+          className={`hidden md:flex gap-7 transition-all duration-300 ${
+            isScrolled ? "text-black" : "text-white"
           }`}
         >
           {menu &&
             menu.map((m, i) => {
               const href = m.url || m.internal?.current || "#";
               return (
-                <a key={i} href={href} className="text-sm hover:underline">
+                <a key={i} href={href} className="text-lg font-bold hover:underline">
                   {m.title}
                 </a>
               );
@@ -139,9 +143,7 @@ export function Header({
         {/* Mobile Hamburger Button */}
         <button
           onClick={toggleMobileMenu}
-          className={`md:hidden p-2 transition-colors ${
-            isScrolled ? "text-[#111827]" : "text-white"
-          }`}
+          className={`md:hidden p-2 transition-colors ${isScrolled ? "text-black" : "text-white"}`}
           aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
         >
@@ -172,9 +174,7 @@ export function Header({
         {isMobileMenuOpen && (
           <div
             className={`absolute top-full left-0 right-0 md:hidden transition-all duration-300 ${
-              isScrolled
-                ? "bg-white dark:bg-neutral-900 border-b border-slate-600 dark:border-neutral-800 shadow-lg"
-                : "bg-gray-900"
+              isScrolled ? "bg-white dark:bg-neutral-900 shadow-lg" : "bg-gray-900"
             }`}
           >
             <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
@@ -187,7 +187,7 @@ export function Header({
                       href={href}
                       onClick={closeMobileMenu}
                       className={`text-sm hover:underline py-2 ${
-                        isScrolled ? "text-[#111827]" : "text-white"
+                        isScrolled ? "text-black" : "text-white"
                       }`}
                     >
                       {m.title}

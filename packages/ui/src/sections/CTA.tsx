@@ -16,7 +16,8 @@ interface CTAProps {
 
 export function CTA({ section, heading, content, buttonText, buttonLink }: CTAProps) {
   const finalHeading = section?.heading || heading || "Ready to Get Started?";
-  const finalContent = section?.content || content || "Let's discuss how we can help you achieve your goals.";
+  const finalContent =
+    section?.content || content || "Let's discuss how we can help you achieve your goals.";
   const finalButtonText = section?.buttonText || buttonText || "Contact Us";
   const finalButtonLink = section?.buttonLink || buttonLink || "/contact";
 
@@ -41,13 +42,13 @@ export function CTA({ section, heading, content, buttonText, buttonLink }: CTAPr
   };
 
   return (
-    <section className="px-6 py-20 sm:px-8 lg:px-12 bg-neutral-50 dark:bg-neutral-800">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-bold">{finalHeading}</h2>
-        {renderContent(finalContent)}
+    <section className="px-6 py-20 sm:px-8 lg:px-12 bg-light">
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-4">{finalHeading}</h2>
+        <p>{renderContent(finalContent)}</p>
         <Link
           href={finalButtonLink}
-          className="mt-6 inline-block rounded-lg bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-semibold transition-colors"
+          className="mt-6 inline-block rounded-lg bg-highlight hover:bg-highlight/90 text-white px-6 py-3 font-semibold transition-colors"
         >
           {finalButtonText}
         </Link>

@@ -1,11 +1,20 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ServiceCategory {
   _id: string;
   title: string;
   value: string;
   description?: string;
+  previewImage?: {
+    asset?: {
+      _id?: string;
+      url?: string;
+    };
+    alt?: string;
+  };
+  mainHeading?: string;
 }
 
 interface Service {
@@ -40,46 +49,87 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
           title: cat.title,
           description: cat.description || "",
           href: `/categories/${cat.value}`,
+          previewImage: cat.previewImage,
+          mainHeading: cat.mainHeading,
         }))
       : services.map((service) => ({
           _id: service._id,
           title: service.title,
           description: service.description,
           href: `/services/${service.slug.current}`,
+          previewImage: undefined,
+          mainHeading: undefined,
         }));
 
-  if (items.length === 0) {
+  // Display all items (up to 3 for optimal layout, but can show more if needed)
+  const displayItems = items;
+
+  if (displayItems.length === 0) {
     return null;
   }
 
   return (
-    <section className="px-6 py-16 sm:px-8 lg:px-12 bg-white dark:bg-neutral-900">
-      <div className="max-w-6xl mx-auto">
-        {heading && (
-          <h2 className="text-3xl font-bold tracking-tight text-center mb-12">{heading}</h2>
-        )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((item) => (
+    <div className="w-full">
+      {heading && (
+        <></>
+        // <h2 className="text-3xl font-bold tracking-tight text-center mb-12">{heading}</h2>
+      )}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        {displayItems.map((item, index) => {
+          const isLast = index === displayItems.length - 1;
+          const imageUrl = item.previewImage?.asset?.url;
+
+          return (
             <Link
               key={item._id}
               href={item.href}
-              className="group block p-6 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 hover:shadow-lg transition-all duration-200"
+              className="group relative block bg-white dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
             >
-              <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                {item.title}
-              </h3>
-              {item.description && (
-                <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              )}
-              <div className="mt-4 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:underline">
-                Learn more →
+              <div className="flex flex-col h-full">
+                {/* Image */}
+                {imageUrl ? (
+                  <div className="relative w-full aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={imageUrl}
+                      alt={item.previewImage?.alt || item.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                ) : (
+                  <></>
+                  // <div className="relative w-full aspect-[4/3] bg-neutral-200 dark:bg-neutral-800" />
+                )}
+
+                {/* Text Content */}
+                <div className="p-6 flex-1 flex flex-col">
+                  {/* Main Heading */}
+                  {item.mainHeading && (
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-600 dark:text-neutral-400 mb-2">
+                      {item.mainHeading}
+                    </h3>
+                  )}
+
+                  {/* Sub-heading (Title) */}
+                  <h4 className="text-xl font-bold mb-4 group-hover:text-brand transition-colors">
+                    {item.title}
+                  </h4>
+
+                  {/* Description */}
+                  {item.description && (
+                    <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed flex-1">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
               </div>
+
+              {/* Arrow icon on the right side of the last panel */}
             </Link>
-          ))}
-        </div>
+          );
+        })}
       </div>
-    </section>
+    </div>
   );
 }

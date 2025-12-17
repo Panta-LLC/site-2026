@@ -27,6 +27,7 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
   // Find specific services for the carousel
   const consultingService = services?.find((s) => s.value === "consulting");
   const productWebService = services?.find((s) => s.value === "product-web");
+  const mediaProductionService = services?.find((s) => s.value === "media-production");
 
   // Define slides with exact titles as requested
   const slides: Slide[] = [
@@ -48,6 +49,18 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
         consultingService?.description ||
         "Strategic technology guidance that transforms your business operations. From initial strategy development to ongoing support, we help you navigate complex technology decisions.",
       link: consultingService ? `/categories/${consultingService.value}` : "/categories/consulting",
+    },
+    {
+      id: "media-production",
+      subheading: "Service",
+      title: mediaProductionService?.title || "Media Production",
+      linkTitle: "Media Production",
+      description:
+        mediaProductionService?.description ||
+        "We produce high-quality media content for businesses and organizations. From video and audio production to marketing and creative services.",
+      link: mediaProductionService
+        ? `/categories/${mediaProductionService.value}`
+        : "/categories/media-production",
     },
     {
       id: "product-web",
@@ -128,7 +141,7 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
   };
 
   return (
-    <section className="relative px-6 py-24 sm:px-8 lg:px-12 text-white bg-gradient-to-b from-gray-900 to-gray-800 min-h-[85vh] flex content-center flex-col justify-center items-center overflow-hidden">
+    <section className="relative px-6 py-24 sm:px-8 lg:px-12 text-white bg-gradient-to-b bg-highlight min-h-[85vh] flex content-center flex-col justify-center items-center overflow-hidden pb-24">
       {/* Slides Container */}
       <div className="relative w-full px-6 max-w-5xl min-h-[450px] md:min-h-[400px]">
         <div className="relative flex items-center justify-center">
@@ -139,20 +152,20 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
                 index === currentSlide ? "opacity-100" : "opacity-0"
               }`}
             >
-              <p className="text-sm font-medium md:text-base text-neutral-400 mb-2 uppercase">
+              <p className="text-sm font-bold md:text-base text-black mb-2 uppercase">
                 {slide.subheading}
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl max-w-3xlfont-bold tracking-tight mb-4">
                 {slide.title}
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl mt-6 mb-10 text-neutral-200 max-w-3xl leading-relaxed">
+              <p className="text-lg md:text-xl lg:text-2xl mt-6 mb-10 text-white max-w-3xl leading-relaxed">
                 {slide.description}
               </p>
               {slide.link && (
                 <div className="mt-8">
                   <Link
                     href={slide.link}
-                    className="inline-block px-8 py-4 bg-white text-gray-900 rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-colors shadow-lg hover:shadow-xl"
+                    className="inline-block px-8 py-4 bg-white text-black rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-colors hover:shadow-xl"
                   >
                     Learn More
                   </Link>
@@ -163,122 +176,131 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
         </div>
       </div>
 
-      {/* Navigation - Bottom Center */}
-      <div className="absolute bottom-8 left-0 right-0 flex items-center">
-        {/* Desktop Navigation - All Buttons */}
-        <div className="hidden md:flex flex-1 justify-center gap-4">
-          {slides.map((slide, index) => (
+      {/* Navigation Bar - Fixed to Bottom */}
+      <div className="absolute bottom-1 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-neutral-200">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between gap-4">
+          {/* Desktop Navigation - All Buttons */}
+          <div className="hidden md:flex flex-1 justify-center gap-6">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => goToSlide(index)}
+                className={`px-4 py-6 text-sm font-bold transition-all duration-300 relative ${
+                  index === currentSlide ? "text-black" : "text-neutral-600 hover:text-neutral-900"
+                }`}
+                aria-label={`Go to ${slide.linkTitle} slide`}
+              >
+                {slide.linkTitle}
+                {index === currentSlide && (
+                  <span className="absolute bottom-0 left-0 right-0 h-1 bg-black"></span>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Navigation - Prev, Active Button, Next */}
+          <div className="md:hidden flex-1 flex items-center justify-center gap-4">
+            {/* Previous Button */}
             <button
-              key={slide.id}
-              onClick={() => goToSlide(index)}
-              className={`px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                index === currentSlide
-                  ? "text-white border-b-2 border-white"
-                  : "text-neutral-400 hover:text-neutral-200"
-              }`}
-              aria-label={`Go to ${slide.linkTitle} slide`}
+              onClick={goToPrevious}
+              className="p-2 text-neutral-600 hover:text-neutral-900 transition-colors"
+              aria-label="Previous slide"
             >
-              {slide.linkTitle}
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
             </button>
-          ))}
-        </div>
 
-        {/* Mobile Navigation - Prev, Active Button, Next */}
-        <div className="md:hidden flex-1 flex items-center justify-center gap-4">
-          {/* Previous Button */}
-          <button
-            onClick={goToPrevious}
-            className="p-2 text-white hover:text-neutral-200 transition-colors"
-            aria-label="Previous slide"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          {/* Active Slide Button */}
-          <button
-            onClick={() => goToSlide(currentSlide)}
-            className="px-4 py-2 text-sm font-medium text-white border-b-2 border-white"
-            aria-label={`Current slide: ${slides[currentSlide]?.linkTitle}`}
-          >
-            {slides[currentSlide]?.linkTitle}
-          </button>
-
-          {/* Next Button */}
-          <button
-            onClick={goToNext}
-            className="p-2 text-white hover:text-neutral-200 transition-colors"
-            aria-label="Next slide"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Play/Pause Button - Fixed to Right with Timer */}
-        <div className="absolute right-4 md:right-8">
-          <button
-            onClick={togglePlayPause}
-            className="relative w-8 h-8 md:w-12 md:h-12 flex items-center justify-center text-white hover:text-neutral-200 transition-colors"
-            aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
-          >
-            {/* Circular Progress Indicator */}
-            <svg
-              className="absolute inset-0 w-8 h-8 md:w-12 md:h-12 transform -rotate-90"
-              viewBox="0 0 48 48"
+            {/* Active Slide Button */}
+            <button
+              onClick={() => goToSlide(currentSlide)}
+              className="px-4 py-6 text-md font-bold text-black relative"
+              aria-label={`Current slide: ${slides[currentSlide]?.linkTitle}`}
             >
-              {/* Background circle */}
-              <circle
-                cx="24"
-                cy="24"
-                r="20"
-                fill="none"
-                stroke="rgba(255, 255, 255, 0.2)"
-                strokeWidth="2"
-              />
-              {/* Progress circle */}
-              <circle
-                cx="24"
-                cy="24"
-                r="20"
-                fill="none"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeDasharray={`${2 * Math.PI * 20}`}
-                strokeDashoffset={`${2 * Math.PI * 20 * (1 - progress / 100)}`}
-                className="transition-all duration-75 ease-linear"
-              />
-            </svg>
-            {/* Play/Pause Icon */}
-            {isPlaying ? (
-              // Pause icon (two vertical bars)
-              <svg
-                className="w-4 h-4 md:w-5 md:h-5 relative z-10"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <rect x="6" y="4" width="4" height="16" rx="1" />
-                <rect x="14" y="4" width="4" height="16" rx="1" />
+              {slides[currentSlide]?.linkTitle}
+              <span className="absolute bottom-0 left-0 right-0 h-1 bg-black"></span>
+            </button>
+
+            {/* Next Button */}
+            <button
+              onClick={goToNext}
+              className="p-2 text-neutral-600 hover:text-neutral-900 transition-colors"
+              aria-label="Next slide"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
-            ) : (
-              // Play icon (triangle)
+            </button>
+          </div>
+
+          {/* Play/Pause Button - Included in Navigation Bar */}
+          <div className="flex-shrink-0">
+            <button
+              onClick={togglePlayPause}
+              className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-neutral-900 hover:text-black transition-colors"
+              aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
+            >
+              {/* Circular Progress Indicator */}
               <svg
-                className="w-4 h-4 md:w-5 md:h-5 relative z-10 ml-0.5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
+                className="absolute inset-0 w-10 h-10 md:w-12 md:h-12 transform -rotate-90"
+                viewBox="0 0 48 48"
               >
-                <path d="M8 5v14l11-7z" />
+                {/* Background circle */}
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="20"
+                  fill="none"
+                  stroke="rgba(0, 0, 0, 0.1)"
+                  strokeWidth="2"
+                />
+                {/* Progress circle */}
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="20"
+                  fill="none"
+                  stroke="black"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 20}`}
+                  strokeDashoffset={`${2 * Math.PI * 20 * (1 - progress / 100)}`}
+                  className="transition-all duration-75 ease-linear"
+                />
               </svg>
-            )}
-          </button>
+              {/* Play/Pause Icon */}
+              {isPlaying ? (
+                // Pause icon (two vertical bars)
+                <svg
+                  className="w-5 h-5 md:w-6 md:h-6 relative z-10"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="6" y="4" width="4" height="16" rx="1" />
+                  <rect x="14" y="4" width="4" height="16" rx="1" />
+                </svg>
+              ) : (
+                // Play icon (triangle)
+                <svg
+                  className="w-5 h-5 md:w-6 md:h-6 relative z-10 ml-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </section>
