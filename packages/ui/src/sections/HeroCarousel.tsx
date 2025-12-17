@@ -12,9 +12,10 @@ interface Slide {
 
 interface HeroCarouselProps {
   services?: Array<{ _id: string; title: string; value: string; description?: string }>;
+  missionPage?: { title?: string; description?: string; slug?: { current?: string } };
 }
 
-export function HeroCarousel({ services }: HeroCarouselProps) {
+export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -29,9 +30,11 @@ export function HeroCarousel({ services }: HeroCarouselProps) {
   const slides: Slide[] = [
     {
       id: "mission",
-      title: "Our Mission",
+      title: missionPage?.title || "Our Mission",
       description:
+        missionPage?.description ||
         "We partner with businesses to turn innovative ideas into reality, optimize operations, and drive growth through cutting-edge technology and strategic expertise.",
+      link: missionPage?.slug?.current ? `/${missionPage.slug.current}` : undefined,
     },
     {
       id: "consulting",
@@ -47,7 +50,9 @@ export function HeroCarousel({ services }: HeroCarouselProps) {
       description:
         productWebService?.description ||
         "Turn your vision into market-ready products and powerful web applications. We create solutions that engage users and drive business results.",
-      link: productWebService ? `/categories/${productWebService.value}` : "/categories/product-web",
+      link: productWebService
+        ? `/categories/${productWebService.value}`
+        : "/categories/product-web",
     },
   ];
 
@@ -136,7 +141,6 @@ export function HeroCarousel({ services }: HeroCarouselProps) {
             </div>
           ))}
         </div>
-
       </div>
 
       {/* Navigation Text Buttons - Bottom Center */}
@@ -158,7 +162,7 @@ export function HeroCarousel({ services }: HeroCarouselProps) {
             </button>
           ))}
         </div>
-        
+
         {/* Play/Pause Button - Fixed to Right with Timer */}
         <div className="absolute right-8">
           <button
@@ -167,10 +171,7 @@ export function HeroCarousel({ services }: HeroCarouselProps) {
             aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
           >
             {/* Circular Progress Indicator */}
-            <svg
-              className="absolute inset-0 w-12 h-12 transform -rotate-90"
-              viewBox="0 0 48 48"
-            >
+            <svg className="absolute inset-0 w-12 h-12 transform -rotate-90" viewBox="0 0 48 48">
               {/* Background circle */}
               <circle
                 cx="24"
@@ -197,21 +198,13 @@ export function HeroCarousel({ services }: HeroCarouselProps) {
             {/* Play/Pause Icon */}
             {isPlaying ? (
               // Pause icon (two vertical bars)
-              <svg
-                className="w-5 h-5 relative z-10"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5 relative z-10" fill="currentColor" viewBox="0 0 24 24">
                 <rect x="6" y="4" width="4" height="16" rx="1" />
                 <rect x="14" y="4" width="4" height="16" rx="1" />
               </svg>
             ) : (
               // Play icon (triangle)
-              <svg
-                className="w-5 h-5 relative z-10 ml-0.5"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5 relative z-10 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
               </svg>
             )}
@@ -221,4 +214,3 @@ export function HeroCarousel({ services }: HeroCarouselProps) {
     </section>
   );
 }
-

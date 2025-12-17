@@ -1,4 +1,8 @@
-import { getAllServiceCategories, getHomepage } from "@panta/lib/src/sanity/queries";
+import {
+  getAllServiceCategories,
+  getHomepage,
+  getMissionPage,
+} from "@panta/lib/src/sanity/queries";
 import { HeroCarousel } from "@panta/ui/src/sections/HeroCarousel";
 import { Feature } from "@panta/ui/src/sections/Features";
 import { ServicePreviews } from "@panta/ui/src/sections/ServicePreviews";
@@ -29,6 +33,7 @@ const renderContent = (content: any) => {
 export default async function HomePage() {
   const services = await getAllServiceCategories();
   const homepage = await getHomepage();
+  const missionPage = await getMissionPage();
 
   // Extract sections from CMS if available
   const heroSection = homepage?.sections?.find((s: any) => s.type === "hero");
@@ -38,7 +43,7 @@ export default async function HomePage() {
   return (
     <main>
       {/* Hero Carousel */}
-      <HeroCarousel services={services} />
+      <HeroCarousel services={services} missionPage={missionPage} />
 
       {/* Why Choose Panta Section */}
       <Feature

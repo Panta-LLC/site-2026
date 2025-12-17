@@ -237,6 +237,7 @@ export async function getPageBySlug(slug: string) {
   const query = `*[_type == "page" && slug.current == $slug && !(_id match "drafts.*")][0]{
     title,
     slug,
+    description,
     content,
     sections[]{
       type,
@@ -269,6 +270,20 @@ export async function getPageBySlug(slug: string) {
   }`;
   try {
     const data = await sanityClient.fetch(query, { slug });
+    return data || null;
+  } catch (e) {
+    return null;
+  }
+}
+
+export async function getMissionPage() {
+  const query = `*[_type == "page" && slug.current == "mission" && !(_id match "drafts.*")][0]{
+    title,
+    description,
+    slug
+  }`;
+  try {
+    const data = await sanityClient.fetch(query);
     return data || null;
   } catch (e) {
     return null;

@@ -1,0 +1,37 @@
+{
+  "_type": "page",
+  "title": "Our Mission",
+  "slug": {
+    "_type": "slug",
+    "current": "mission"
+  },
+  "description": "We partner with businesses to turn innovative ideas into reality, optimize operations, and drive growth through cutting-edge technology and strategic expertise.",
+  "content": [
+    {
+      "_type": "block",
+      "style": "normal",
+      "children": [
+        {
+          "_type": "span",
+          "text": "At Panta, we believe technology should empower businesses to achieve their greatest potential. Our mission is to bridge the gap between innovative ideas and real-world solutions.",
+          "marks": []
+        }
+      ],
+      "markDefs": []
+    },
+    {
+      "_type": "block",
+      "style": "normal",
+      "children": [
+        {
+          "_type": "span",
+          "text": "We partner with businesses to turn innovative ideas into reality, optimize operations, and drive growth through cutting-edge technology and strategic expertise.",
+          "marks": []
+        }
+      ],
+      "markDefs": []
+    }
+  ],
+  "sections": []
+}
+
