@@ -1,86 +1,108 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 
 interface Slide {
   id: string;
-  subheading: string;
+  subheading?: string;
   title: string;
   linkTitle: string;
-  description: string;
+  description?: string;
   link?: string;
 }
 
-interface HeroCarouselProps {
-  services?: Array<{ _id: string; title: string; value: string; description?: string }>;
-  missionPage?: { title?: string; description?: string; slug?: { current?: string } };
+interface ContentReference {
+  _type: string;
+  _id: string;
+  title?: string;
+  slug?: { current?: string };
+  slugValue?: string;
+  value?: string;
 }
 
-export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
+interface HeroCarouselSlide {
+  _key?: string;
+  subheading?: string;
+  title: string;
+  description?: string;
+  linkTitle?: string;
+  customLink?: string;
+  order?: number;
+  contentReference?: ContentReference | null;
+}
+
+interface HeroCarouselProps {
+  slides?: HeroCarouselSlide[];
+}
+
+function buildLinkFromReference(slide: HeroCarouselSlide): string | undefined {
+  if (slide.customLink) {
+    return slide.customLink;
+  }
+
+  const ref = slide.contentReference;
+  if (!ref) {
+    return undefined;
+  }
+
+  switch (ref._type) {
+    case "page":
+      return ref.slugValue ? `/${ref.slugValue}` : undefined;
+    case "serviceCategory":
+      return ref.value ? `/categories/${ref.value}` : undefined;
+    case "service":
+      return ref.slugValue ? `/services/${ref.slugValue}` : undefined;
+    default:
+      return undefined;
+  }
+}
+
+export function HeroCarousel({ slides: sanitySlides = [] }: HeroCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number>(Date.now());
 
-  // Find specific services for the carousel
-  const consultingService = services?.find((s) => s.value === "consulting");
-  const productWebService = services?.find((s) => s.value === "product-web");
-  const mediaProductionService = services?.find((s) => s.value === "media-production");
+  const slides: Slide[] = useMemo(() => {
+    if (!sanitySlides || sanitySlides.length === 0) {
+      return [];
+    }
 
-  // Define slides with exact titles as requested
-  const slides: Slide[] = [
-    {
-      id: "mission",
-      subheading: "Our Mission",
-      title: missionPage?.title || "Our Mission",
-      linkTitle: "Our Mission",
-      description: missionPage?.description,
+    const validSlides = sanitySlides.filter((slide) => slide.title);
 
-      link: missionPage?.slug?.current ? `/${missionPage.slug.current}` : undefined,
-    },
-    {
-      id: "consulting",
-      subheading: "Service",
-      title: consultingService?.title || "Business Technology Consulting",
-      linkTitle: "Business Technology Consulting",
-      description:
-        consultingService?.description ||
-        "Strategic technology guidance that transforms your business operations. From initial strategy development to ongoing support, we help you navigate complex technology decisions.",
-      link: consultingService ? `/categories/${consultingService.value}` : "/categories/consulting",
-    },
-    {
-      id: "media-production",
-      subheading: "Service",
-      title: mediaProductionService?.title || "Media Production",
-      linkTitle: "Media Production",
-      description:
-        mediaProductionService?.description ||
-        "We produce high-quality media content for businesses and organizations. From video and audio production to marketing and creative services.",
-      link: mediaProductionService
-        ? `/categories/${mediaProductionService.value}`
-        : "/categories/media-production",
-    },
-    {
-      id: "product-web",
-      subheading: "Service",
-      title: productWebService?.title || "Product and Web Development",
-      linkTitle: "Product and Web Development",
-      description:
-        productWebService?.description ||
-        "Turn your vision into market-ready products and powerful web applications. We create solutions that engage users and drive business results.",
-      link: productWebService
-        ? `/categories/${productWebService.value}`
-        : "/categories/product-web",
-    },
-  ];
+    if (validSlides.length === 0) {
+      return [];
+    }
 
-  const SLIDE_DURATION = 5000; // 5 seconds
+    const sortedSlides = [...validSlides].sort((a, b) => {
+      const orderA = a.order ?? 999;
+      const orderB = b.order ?? 999;
+      return orderA - orderB;
+    });
 
-  // Progress timer animation
+    return sortedSlides.map((slide, index) => {
+      const link = buildLinkFromReference(slide);
+      return {
+        id: slide._key || `slide-${index}`,
+        subheading: slide.subheading || "",
+        title: slide.title,
+        linkTitle: slide.linkTitle || slide.title,
+        description: slide.description,
+        link,
+      };
+    });
+  }, [sanitySlides]);
+
+  const SLIDE_DURATION = 5000;
+
+  if (slides.length === 0) {
+    return null;
+  }
+
   useEffect(() => {
-    if (!isPlaying) {
+    if (!isPlaying || slides.length === 0) {
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
         progressIntervalRef.current = null;
@@ -88,21 +110,18 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
       return;
     }
 
-    // Reset progress and start time when slide changes
     setProgress(0);
     startTimeRef.current = Date.now();
 
-    // Update progress smoothly
     progressIntervalRef.current = setInterval(() => {
       const elapsed = Date.now() - startTimeRef.current;
       const newProgress = Math.min((elapsed / SLIDE_DURATION) * 100, 100);
       setProgress(newProgress);
 
-      // Auto-advance when progress reaches 100%
       if (newProgress >= 100) {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
       }
-    }, 16); // ~60fps updates
+    }, 16);
 
     return () => {
       if (progressIntervalRef.current) {
@@ -112,7 +131,6 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
     };
   }, [isPlaying, currentSlide, slides.length]);
 
-  // Reset progress when slide changes
   useEffect(() => {
     if (isPlaying) {
       setProgress(0);
@@ -126,7 +144,6 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
-    // Pause timer when manually navigating
     setIsPlaying(false);
   };
 
@@ -141,9 +158,8 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
   };
 
   return (
-    <section className="relative px-6 py-24 sm:px-8 lg:px-12 text-white bg-gradient-to-b bg-highlight min-h-[85vh] flex content-center flex-col justify-center items-center overflow-hidden pb-24">
-      {/* Slides Container */}
-      <div className="relative w-full px-6 max-w-5xl min-h-[450px] md:min-h-[400px]">
+    <section className="relative h-screen px-6 py-24 sm:px-8 lg:px-12 text-white bg-gradient-to-b bg-highlight min-h-[85vh] flex content-center flex-col justify-center items-center overflow-hidden pb-24">
+      <div className="relative w-full px-6 max-w-7xl min-h-[450px] md:min-h-[400px]">
         <div className="relative flex items-center justify-center">
           {slides.map((slide, index) => (
             <div
@@ -152,15 +168,19 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
                 index === currentSlide ? "opacity-100" : "opacity-0"
               }`}
             >
-              <p className="text-sm font-bold md:text-base text-black mb-2 uppercase">
-                {slide.subheading}
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl max-w-3xlfont-bold tracking-tight mb-4">
+              {slide.subheading && (
+                <p className="text-sm font-bold md:text-base text-black mb-2 uppercase">
+                  {slide.subheading}
+                </p>
+              )}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl max-w-4xl font-bold tracking-tight mb-4">
                 {slide.title}
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl mt-6 mb-10 text-white max-w-3xl leading-relaxed">
-                {slide.description}
-              </p>
+              {slide.description && (
+                <p className="text-lg md:text-xl lg:text-2xl mt-6 mb-10 text-white max-w-3xl leading-relaxed">
+                  {slide.description}
+                </p>
+              )}
               {slide.link && (
                 <div className="mt-8">
                   <Link
@@ -176,10 +196,8 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
         </div>
       </div>
 
-      {/* Navigation Bar - Fixed to Bottom */}
       <div className="absolute bottom-1 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-neutral-200">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between gap-4">
-          {/* Desktop Navigation - All Buttons */}
           <div className="hidden md:flex flex-1 justify-center gap-6">
             {slides.map((slide, index) => (
               <button
@@ -198,9 +216,7 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
             ))}
           </div>
 
-          {/* Mobile Navigation - Prev, Active Button, Next */}
           <div className="md:hidden flex-1 flex items-center justify-center gap-4">
-            {/* Previous Button */}
             <button
               onClick={goToPrevious}
               className="p-2 text-neutral-600 hover:text-neutral-900 transition-colors"
@@ -216,7 +232,6 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
               </svg>
             </button>
 
-            {/* Active Slide Button */}
             <button
               onClick={() => goToSlide(currentSlide)}
               className="px-4 py-6 text-md font-bold text-black relative"
@@ -226,7 +241,6 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
               <span className="absolute bottom-0 left-0 right-0 h-1 bg-black"></span>
             </button>
 
-            {/* Next Button */}
             <button
               onClick={goToNext}
               className="p-2 text-neutral-600 hover:text-neutral-900 transition-colors"
@@ -243,19 +257,16 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
             </button>
           </div>
 
-          {/* Play/Pause Button - Included in Navigation Bar */}
           <div className="flex-shrink-0">
             <button
               onClick={togglePlayPause}
               className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-neutral-900 hover:text-black transition-colors"
               aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
             >
-              {/* Circular Progress Indicator */}
               <svg
                 className="absolute inset-0 w-10 h-10 md:w-12 md:h-12 transform -rotate-90"
                 viewBox="0 0 48 48"
               >
-                {/* Background circle */}
                 <circle
                   cx="24"
                   cy="24"
@@ -264,7 +275,6 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
                   stroke="rgba(0, 0, 0, 0.1)"
                   strokeWidth="2"
                 />
-                {/* Progress circle */}
                 <circle
                   cx="24"
                   cy="24"
@@ -278,9 +288,7 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
                   className="transition-all duration-75 ease-linear"
                 />
               </svg>
-              {/* Play/Pause Icon */}
               {isPlaying ? (
-                // Pause icon (two vertical bars)
                 <svg
                   className="w-5 h-5 md:w-6 md:h-6 relative z-10"
                   fill="currentColor"
@@ -290,7 +298,6 @@ export function HeroCarousel({ services, missionPage }: HeroCarouselProps) {
                   <rect x="14" y="4" width="4" height="16" rx="1" />
                 </svg>
               ) : (
-                // Play icon (triangle)
                 <svg
                   className="w-5 h-5 md:w-6 md:h-6 relative z-10 ml-0.5"
                   fill="currentColor"

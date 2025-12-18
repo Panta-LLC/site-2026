@@ -55,17 +55,15 @@ export default async function MissionPage() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="px-6 pt-24 pb-8 sm:px-8 lg:px-12 flex content-center flex-col justify-center items-center text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight w-[80%] max-w-[900px]">
+      <section className="px-6 pt-36 pb-2 sm:px-8 lg:px-12 flex content-center flex-col justify-center items-center text-center">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-10 sm:leading-[55px] w-[80%] max-w-[900px]">
           {page.title}
         </h1>
-        {page.description && (
-          <p className="text-lg mt-4 w-[70%] max-w-[900px]">{page.description}</p>
-        )}
+        {page.description && <p className="text-lg mt-4 w-[70%] max-w-2xl">{page.description}</p>}
       </section>
 
       {/* Main Content */}
-      <section className="px-6 py-16 sm:px-8 lg:px-12 bg-white dark:bg-neutral-900">
+      <section className="px-6 py-8 sm:px-8 lg:px-12 bg-white dark:bg-neutral-900">
         <div className="max-w-4xl mx-auto">
           {page.content && (
             <div className="prose dark:prose-invert max-w-none">{renderContent(page.content)}</div>

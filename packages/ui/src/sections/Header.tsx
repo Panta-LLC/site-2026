@@ -29,14 +29,12 @@ export function Header({
       setIsScrolled(scrollPosition > 20);
     };
 
-    // Check initial scroll position on mount
     handleScroll();
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -45,7 +43,6 @@ export function Header({
       }
     };
 
-    // Close on escape key
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
@@ -97,7 +94,7 @@ export function Header({
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           {logo?.asset?.url ? (
             <img
@@ -123,7 +120,6 @@ export function Header({
           )}
         </Link>
 
-        {/* Desktop Navigation */}
         <nav
           className={`hidden md:flex gap-7 transition-all duration-300 ${
             isScrolled ? "text-black" : "text-white"
@@ -140,7 +136,6 @@ export function Header({
             })}
         </nav>
 
-        {/* Mobile Hamburger Button */}
         <button
           onClick={toggleMobileMenu}
           className={`md:hidden p-2 transition-colors ${isScrolled ? "text-black" : "text-white"}`}
@@ -148,7 +143,6 @@ export function Header({
           aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? (
-            // Close icon (X)
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
@@ -158,7 +152,6 @@ export function Header({
               />
             </svg>
           ) : (
-            // Hamburger icon
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
@@ -170,7 +163,6 @@ export function Header({
           )}
         </button>
 
-        {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
           <div
             className={`absolute top-full left-0 right-0 md:hidden transition-all duration-300 ${

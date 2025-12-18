@@ -232,6 +232,23 @@ export async function getHomepage() {
         title,
         value,
         description
+      },
+      slides[]{
+        _key,
+        subheading,
+        title,
+        description,
+        linkTitle,
+        customLink,
+        order,
+        contentReference->{
+          _type,
+          _id,
+          title,
+          slug,
+          "slugValue": slug.current,
+          value
+        }
       }
     }
   }`;
@@ -274,6 +291,23 @@ export async function getPageBySlug(slug: string) {
         title,
         value,
         description
+      },
+      slides[]{
+        _key,
+        subheading,
+        title,
+        description,
+        linkTitle,
+        customLink,
+        order,
+        contentReference->{
+          _type,
+          _id,
+          title,
+          slug,
+          "slugValue": slug.current,
+          value
+        }
       }
     },
     seo

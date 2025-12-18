@@ -56,7 +56,6 @@ const problemsSolutions: ProblemSolution[] = [
 ];
 
 export function ProblemsWeSolve() {
-  // First 3 cards (first row) expanded by default, rest collapsed
   const [expandedCards, setExpandedCards] = useState<Set<number>>(
     new Set([0, 1, 2])
   );

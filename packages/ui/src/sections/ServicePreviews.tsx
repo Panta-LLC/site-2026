@@ -36,12 +36,9 @@ interface ServicePreviewsProps {
 }
 
 export function ServicePreviews({ section }: ServicePreviewsProps) {
-  // Support both serviceCategories (new) and services (legacy)
   const serviceCategories = section?.serviceCategories || [];
   const services = section?.services || [];
-  const heading = section?.heading;
 
-  // If serviceCategories are provided, use those; otherwise fall back to services
   const items =
     serviceCategories.length > 0
       ? serviceCategories.map((cat) => ({
@@ -61,7 +58,6 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
           mainHeading: undefined,
         }));
 
-  // Display all items (up to 3 for optimal layout, but can show more if needed)
   const displayItems = items;
 
   if (displayItems.length === 0) {
@@ -70,13 +66,8 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
 
   return (
     <div className="w-full">
-      {heading && (
-        <></>
-        // <h2 className="text-3xl font-bold tracking-tight text-center mb-12">{heading}</h2>
-      )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-        {displayItems.map((item, index) => {
-          const isLast = index === displayItems.length - 1;
+        {displayItems.map((item) => {
           const imageUrl = item.previewImage?.asset?.url;
 
           return (
@@ -86,8 +77,7 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
               className="group relative block bg-white dark:bg-neutral-900 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
             >
               <div className="flex flex-col h-full">
-                {/* Image */}
-                {imageUrl ? (
+                {imageUrl && (
                   <div className="relative w-full aspect-[4/3] overflow-hidden">
                     <Image
                       src={imageUrl}
@@ -97,26 +87,19 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
-                ) : (
-                  <></>
-                  // <div className="relative w-full aspect-[4/3] bg-neutral-200 dark:bg-neutral-800" />
                 )}
 
-                {/* Text Content */}
                 <div className="p-6 flex-1 flex flex-col">
-                  {/* Main Heading */}
                   {item.mainHeading && (
                     <h3 className="text-sm font-semibold uppercase tracking-wider text-neutral-600 dark:text-neutral-400 mb-2">
                       {item.mainHeading}
                     </h3>
                   )}
 
-                  {/* Sub-heading (Title) */}
                   <h4 className="text-xl font-bold mb-4 group-hover:text-brand transition-colors">
                     {item.title}
                   </h4>
 
-                  {/* Description */}
                   {item.description && (
                     <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed flex-1">
                       {item.description}
@@ -124,8 +107,6 @@ export function ServicePreviews({ section }: ServicePreviewsProps) {
                   )}
                 </div>
               </div>
-
-              {/* Arrow icon on the right side of the last panel */}
             </Link>
           );
         })}

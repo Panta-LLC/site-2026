@@ -1,13 +1,28 @@
 import React from "react";
 
+interface Benefit {
+  _key?: string;
+  title?: string;
+  description?: string;
+}
+
+interface FeatureSection {
+  heading?: string;
+  content?: string | any;
+  benefits?: Benefit[];
+}
+
+interface FeatureProps {
+  section?: FeatureSection;
+}
+
 const items = [
   { title: "Fast", desc: "Optimized performance and loading." },
   { title: "Accessible", desc: "WCAG 2.1-compliant components." },
   { title: "Manageable", desc: "Sanity CMS-driven content." },
 ];
 
-export function Feature({ section }: { section?: any }) {
-  console.log("Section prop in Feature:", section);
+export function Feature({ section }: FeatureProps) {
   const renderContent = (content: any) => {
     if (!content) return null;
     if (typeof content === "string") return content;
@@ -32,7 +47,6 @@ export function Feature({ section }: { section?: any }) {
     return String(content);
   };
 
-  // Check if section has benefits array (for category pages)
   const benefits = section?.benefits || [];
 
   return (
@@ -50,7 +64,7 @@ export function Feature({ section }: { section?: any }) {
         )}
         {benefits.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit: any, i: number) => (
+            {benefits.map((benefit, i: number) => (
               <div key={benefit._key || i} className="p-6 rounded-lg border border-neutral-200 dark:border-neutral-700">
                 {benefit.title && (
                   <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>

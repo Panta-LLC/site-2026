@@ -13,6 +13,7 @@ export default defineType({
         list: [
           { title: "Rich Text", value: "richText" },
           { title: "Hero", value: "hero" },
+          { title: "Hero Carousel", value: "heroCarousel" },
           { title: "Features", value: "features" },
           { title: "CTA", value: "cta" },
           { title: "Image", value: "image" },
@@ -77,6 +78,15 @@ export default defineType({
       type: "array",
       of: [{ type: "string" }],
       hidden: ({ parent }) => parent?.type !== "serviceDetails",
+    }),
+    // Hero Carousel slides
+    defineField({
+      name: "slides",
+      title: "Slides",
+      type: "array",
+      of: [{ type: "heroCarouselSlide" }],
+      description: "Carousel slides",
+      hidden: ({ parent }) => parent?.type !== "heroCarousel",
     }),
   ],
 });

@@ -1,11 +1,18 @@
 import React from "react";
 
-export function Hero({ section }: { section?: any }) {
+interface HeroSection {
+  heading?: string;
+  content?: string | any;
+}
+
+interface HeroProps {
+  section?: HeroSection;
+}
+
+export function Hero({ section }: HeroProps) {
   const renderContent = (content: any) => {
     if (!content) return null;
-    // If it's a string, just return it
     if (typeof content === "string") return content;
-    // If it's an array of blocks (Sanity Portable Text), map to paragraphs
     if (Array.isArray(content)) {
       return content.map((block: any, i: number) => {
         if (!block) return null;
@@ -17,7 +24,6 @@ export function Hero({ section }: { section?: any }) {
             </p>
           );
         }
-        // Fallback: stringify
         return (
           <pre key={block._key || i} className="my-4 whitespace-pre-wrap">
             {JSON.stringify(block)}
@@ -25,7 +31,6 @@ export function Hero({ section }: { section?: any }) {
         );
       });
     }
-    // Unknown object, stringify safely
     return String(content);
   };
 

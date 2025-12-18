@@ -3,7 +3,7 @@ import React from "react";
 interface ServiceDetailsProps {
   section?: {
     heading?: string;
-    content?: any; // Portable text
+    content?: any;
     serviceList?: string[];
   };
 }
@@ -36,16 +36,13 @@ export function ServiceDetails({ section }: ServiceDetailsProps) {
   const serviceList = section?.serviceList || [];
   const heading = section?.heading;
 
-  // Don't render if no content
   if (!content && serviceList.length === 0) {
     return null;
   }
 
   return (
     <div className="w-full">
-      {/* {heading && <h3 className="text-xl font-bold mb-6">{heading}</h3>} */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {/* Description - 2 columns */}
         {content && (
           <div className="md:col-span-2">
             {heading && <h2 className="text-2xl font-bold mb-4">{heading}</h2>}
@@ -53,7 +50,6 @@ export function ServiceDetails({ section }: ServiceDetailsProps) {
           </div>
         )}
 
-        {/* Service List - 1 column */}
         {serviceList.length > 0 && (
           <div className="md:col-span-1">
             <h2 className="text-2xl font-bold tracking-tight mb-4">Service Details</h2>
