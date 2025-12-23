@@ -66,22 +66,26 @@ export function CTA({ section, heading, content, buttonText, buttonLink }: CTAPr
     }
   };
 
-  const ButtonComponent = shouldOpenModal ? "button" : Link;
-  const buttonProps = shouldOpenModal
-    ? { onClick: handleButtonClick }
-    : { href: finalButtonLink };
-
   return (
     <section className="px-6 py-20 sm:px-8 lg:px-12 bg-light">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">{finalHeading}</h2>
         <div>{renderContent(finalContent)}</div>
-        <ButtonComponent
-          {...buttonProps}
-          className="mt-6 inline-block rounded-lg bg-highlight hover:bg-highlight/90 text-white px-6 py-3 font-semibold transition-colors"
-        >
-          {finalButtonText}
-        </ButtonComponent>
+        {shouldOpenModal ? (
+          <button
+            onClick={handleButtonClick}
+            className="mt-6 inline-block rounded-lg bg-highlight hover:bg-highlight/90 text-white px-6 py-3 font-semibold transition-colors"
+          >
+            {finalButtonText}
+          </button>
+        ) : (
+          <Link
+            href={finalButtonLink}
+            className="mt-6 inline-block rounded-lg bg-highlight hover:bg-highlight/90 text-white px-6 py-3 font-semibold transition-colors"
+          >
+            {finalButtonText}
+          </Link>
+        )}
       </div>
     </section>
   );

@@ -71,11 +71,6 @@ export function Hero({ section }: HeroProps) {
     }
   };
 
-  const ButtonComponent = shouldOpenModal ? "button" : Link;
-  const buttonProps = shouldOpenModal
-    ? { onClick: handleButtonClick }
-    : { href: section?.buttonLink };
-
   return (
     <section className="py-24 text-white bg-gradient-to-b bg-highlight min-h-[85vh] flex content-center flex-col justify-center items-center pt-32">
       <div className="max-w-6xl sm:px-8 lg:px-12 mx-auto flex flex-col justify-center items-center text-center">
@@ -86,12 +81,21 @@ export function Hero({ section }: HeroProps) {
           {renderContent(content)}
         </div>
         {section?.buttonText && section?.buttonLink && (
-          <ButtonComponent
-            {...buttonProps}
-            className="inline-block px-8 py-4 bg-white text-black rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-colors hover:shadow-xl"
-          >
-            {section.buttonText}
-          </ButtonComponent>
+          shouldOpenModal ? (
+            <button
+              onClick={handleButtonClick}
+              className="inline-block px-8 py-4 bg-white text-black rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-colors hover:shadow-xl"
+            >
+              {section.buttonText}
+            </button>
+          ) : (
+            <Link
+              href={section.buttonLink}
+              className="inline-block px-8 py-4 bg-white text-black rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-colors hover:shadow-xl"
+            >
+              {section.buttonText}
+            </Link>
+          )
         )}
       </div>
     </section>
