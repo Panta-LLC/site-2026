@@ -220,6 +220,14 @@ export async function getHomepage() {
         description,
         icon
       },
+      steps[]{
+        _key,
+        title,
+        description,
+        icon
+      },
+      goodFit,
+      notGoodFit,
       services[]->{
         _id,
         title,

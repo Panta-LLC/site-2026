@@ -7,3 +7,7 @@ export * from "./sections/ServiceDetails";
 export * from "./sections/CTA";
 export * from "./sections/Footer";
 export * from "./sections/Header";
+export * from "./sections/Process";
+export * from "./sections/WhoThisIsFor";
+export * from "./sections/ContactModal";
+export * from "./sections/ScheduleModalContext";

@@ -23,7 +23,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="stylesheet" href="https://use.typekit.net/jpq4nju.css" />
       </head>
       <body className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
-        <Providers>
+        <Providers
+          email={process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@panta.com"}
+          phone={process.env.NEXT_PUBLIC_CONTACT_PHONE || "(555) 123-4567"}
+        >
           {/* Header uses site-wide content from Sanity */}
           <Header
             title={site?.title}

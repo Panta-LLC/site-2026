@@ -26,7 +26,14 @@ pnpm dev
 Set env vars by copying `.env.example` to `.env.local` in each app:
 
 - `apps/studio/.env.local`: `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`
-- `apps/web/.env.local`: `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_READ_TOKEN` (optional), `NEXT_PUBLIC_MIXPANEL_TOKEN`, `NEXT_PUBLIC_GROWTHBOOK_API_HOST`, `NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY`
+- `apps/web/.env.local`: 
+  - `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_READ_TOKEN` (optional)
+  - `NEXT_PUBLIC_MIXPANEL_TOKEN`, `NEXT_PUBLIC_GROWTHBOOK_API_HOST`, `NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY`
+  - Email configuration (choose one):
+    - **SMTP**: `SMTP_HOST`, `SMTP_PORT` (default: 587), `SMTP_USER`, `SMTP_PASS`, `SMTP_SECURE` (true for 465), `SMTP_FROM_EMAIL`
+    - **Gmail App Password**: `GMAIL_USER`, `GMAIL_APP_PASSWORD`
+    - **Gmail OAuth2**: `GMAIL_USER`, `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REFRESH_TOKEN`
+  - `SCHEDULE_CALL_EMAIL` (recipient email, defaults to `NEXT_PUBLIC_CONTACT_EMAIL` or "hello@panta.com")
 - `apps/api/.env` (optional): `MONGODB_URI`
 
 If `projectId`/`dataset` are missing, Studio will fail to start and Web will throw a clear configuration error.
@@ -44,6 +51,44 @@ If `projectId`/`dataset` are missing, Studio will fail to start and Web will thr
 - **Env var:** Set `NEXT_PUBLIC_MIXPANEL_TOKEN` in `apps/web/.env.local` (or in Vercel project settings) to enable Mixpanel tracking.
 - **Security:** If any tokens were accidentally committed, rotate them immediately and remove committed files from history if necessary.
 - **Local dev:** Keep local `.env*` files out of Git; `.gitignore` already contains `.env.local` and `**/.next/` patterns.
+
+## Email setup (Schedule Call Form)
+
+The schedule call form uses Nodemailer to send emails. Configure one of the following options in `apps/web/.env.local`:
+
+### Option 1: SMTP (Recommended for production)
+```bash
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your-email@example.com
+SMTP_PASS=your-password
+SMTP_SECURE=false  # true for port 465, false for 587
+SMTP_FROM_EMAIL=noreply@example.com
+SCHEDULE_CALL_EMAIL=recipient@example.com
+```
+
+### Option 2: Gmail App Password (Easy for testing)
+```bash
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-16-char-app-password
+SCHEDULE_CALL_EMAIL=recipient@example.com
+```
+
+To get a Gmail App Password:
+1. Enable 2-Step Verification on your Google Account
+2. Go to Google Account → Security → App passwords
+3. Generate a new app password for "Mail"
+
+### Option 3: Gmail OAuth2 (Most secure)
+```bash
+GMAIL_USER=your-email@gmail.com
+GMAIL_CLIENT_ID=your-client-id
+GMAIL_CLIENT_SECRET=your-client-secret
+GMAIL_REFRESH_TOKEN=your-refresh-token
+SCHEDULE_CALL_EMAIL=recipient@example.com
+```
+
+**Note:** If email is not configured, requests will be logged to the console in development mode.
 
 ## Running tests & Storybook
 

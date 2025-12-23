@@ -29,6 +29,8 @@ const config: StorybookConfig = {
         alias: {
           "@panta/lib": libSrcPath,
           "next/navigation": path.resolve(__dirname, "./next-navigation-mock.ts"),
+          "next/link": path.resolve(__dirname, "./next-link-mock.tsx"),
+          "next/image": path.resolve(__dirname, "./next-image-mock.tsx"),
         },
       },
     });

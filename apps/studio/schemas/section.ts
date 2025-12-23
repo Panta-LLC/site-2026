@@ -19,6 +19,8 @@ export default defineType({
           { title: "Image", value: "image" },
           { title: "Service Previews", value: "servicePreviews" },
           { title: "Service Details", value: "serviceDetails" },
+          { title: "Process", value: "process" },
+          { title: "Who This Is For", value: "whoThisIsFor" },
         ],
         layout: "radio",
       },
@@ -48,18 +50,18 @@ export default defineType({
       of: [{ type: "block" }],
     }),
     defineField({ name: "image", type: "image" }),
-    // CTA-specific fields
+    // Button fields (used by both Hero and CTA sections)
     defineField({
       name: "buttonText",
       type: "string",
-      description: "CTA button text",
-      hidden: ({ parent }) => parent?.type !== "cta",
+      description: "Button text",
+      hidden: ({ parent }) => parent?.type !== "cta" && parent?.type !== "hero",
     }),
     defineField({
       name: "buttonLink",
       type: "string",
-      description: "CTA button link",
-      hidden: ({ parent }) => parent?.type !== "cta",
+      description: "Button link",
+      hidden: ({ parent }) => parent?.type !== "cta" && parent?.type !== "hero",
     }),
     // Benefits for features section
     defineField({
@@ -87,6 +89,29 @@ export default defineType({
       of: [{ type: "heroCarouselSlide" }],
       description: "Carousel slides",
       hidden: ({ parent }) => parent?.type !== "heroCarousel",
+    }),
+    // Process steps
+    defineField({
+      name: "steps",
+      type: "array",
+      of: [{ type: "benefit" }],
+      description: "Process steps",
+      hidden: ({ parent }) => parent?.type !== "process",
+    }),
+    // Who This Is For fields
+    defineField({
+      name: "goodFit",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "Good fit criteria",
+      hidden: ({ parent }) => parent?.type !== "whoThisIsFor",
+    }),
+    defineField({
+      name: "notGoodFit",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "Not a good fit criteria",
+      hidden: ({ parent }) => parent?.type !== "whoThisIsFor",
     }),
   ],
 });

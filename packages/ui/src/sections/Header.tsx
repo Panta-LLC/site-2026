@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useScheduleModal } from "./ScheduleModalContext";
 
 type MenuItem = { title?: string; url?: string; internal?: { current?: string } };
 type FooterCategory = { title?: string; links?: { label?: string; url?: string }[] };
@@ -21,7 +22,7 @@ export function Header({
   const pathname = usePathname();
   const isHomepage = pathname === "/";
   const [isScrolled, setIsScrolled] = useState(!isHomepage);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const scheduleModal = useScheduleModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,38 +36,6 @@ export function Header({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (isMobileMenuOpen && !target.closest("header")) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    if (isMobileMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [isMobileMenuOpen]);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <header
@@ -120,75 +89,16 @@ export function Header({
           )}
         </Link>
 
-        <nav
-          className={`hidden md:flex gap-7 transition-all duration-300 ${
-            isScrolled ? "text-black" : "text-white"
+        <button
+          onClick={() => scheduleModal?.openModal("schedule")}
+          className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
+            isScrolled
+              ? "bg-brand text-white hover:bg-brand-dark"
+              : "bg-white text-brand hover:bg-neutral-100"
           }`}
         >
-          {menu &&
-            menu.map((m, i) => {
-              const href = m.url || m.internal?.current || "#";
-              return (
-                <a key={i} href={href} className="text-lg font-bold hover:underline">
-                  {m.title}
-                </a>
-              );
-            })}
-        </nav>
-
-        <button
-          onClick={toggleMobileMenu}
-          className={`md:hidden p-2 transition-colors ${isScrolled ? "text-black" : "text-white"}`}
-          aria-label="Toggle menu"
-          aria-expanded={isMobileMenuOpen}
-        >
-          {isMobileMenuOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          )}
+          Schedule a Call
         </button>
-
-        {isMobileMenuOpen && (
-          <div
-            className={`absolute top-full left-0 right-0 md:hidden transition-all duration-300 ${
-              isScrolled ? "bg-white dark:bg-neutral-900 shadow-lg" : "bg-gray-900"
-            }`}
-          >
-            <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
-              {menu &&
-                menu.map((m, i) => {
-                  const href = m.url || m.internal?.current || "#";
-                  return (
-                    <a
-                      key={i}
-                      href={href}
-                      onClick={closeMobileMenu}
-                      className={`text-sm hover:underline py-2 ${
-                        isScrolled ? "text-black" : "text-white"
-                      }`}
-                    >
-                      {m.title}
-                    </a>
-                  );
-                })}
-            </nav>
-          </div>
-        )}
       </div>
     </header>
   );

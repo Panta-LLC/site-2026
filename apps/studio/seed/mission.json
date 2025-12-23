@@ -5,7 +5,7 @@
     "_type": "slug",
     "current": "mission"
   },
-  "description": "We partner with businesses to turn innovative ideas into reality, optimize operations, and drive growth through cutting-edge technology and strategic expertise.",
+  "description": "We help people and organizations build strong media and technology foundations so they can operate more effectively, communicate more clearly, and grow with intention.",
   "content": [
     {
       "_type": "block",
@@ -13,7 +13,7 @@
       "children": [
         {
           "_type": "span",
-          "text": "At Panta, we believe technology should empower businesses to achieve their greatest potential. Our mission is to bridge the gap between innovative ideas and real-world solutions.",
+          "text": "We help people and organizations build strong media and technology foundations so they can operate more effectively, communicate more clearly, and grow with intention.",
           "marks": []
         }
       ],
@@ -25,13 +25,333 @@
       "children": [
         {
           "_type": "span",
-          "text": "We partner with businesses to turn innovative ideas into reality, optimize operations, and drive growth through cutting-edge technology and strategic expertise.",
+          "text": "In a fast-moving digital landscape, new tools create opportunity—but only when they're applied with clarity, purpose, and a solid foundation. Our mission is to help our partners navigate complexity, identify the right opportunities, and design systems that support long-term impact.",
           "marks": []
         }
       ],
       "markDefs": []
     }
   ],
-  "sections": []
+  "sections": [
+    {
+      "_type": "section",
+      "type": "richText",
+      "heading": "Our Approach",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Our work sits at the intersection of strategy, technology, and media. We don't just build things—we help you understand what to build, why it matters, and how it fits into the bigger picture.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Across every engagement, our goal is the same: to create systems that make people and organizations more effective.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "richText",
+      "heading": "How We Do That",
+      "content": []
+    },
+    {
+      "_type": "section",
+      "type": "features",
+      "heading": "Strategic Business & Technology Consulting",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "We help organizations make better technology decisions.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "That starts with understanding your business, your goals, and your current tools. From there, we assess whether your existing systems are serving you—and where opportunities exist to improve efficiency, clarity, or scalability.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "The result is a clear path forward, grounded in your mission and realities.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ],
+      "benefits": [
+        {
+          "_key": "consulting-1",
+          "_type": "benefit",
+          "title": "Evaluating current technology and media investments",
+          "description": ""
+        },
+        {
+          "_key": "consulting-2",
+          "_type": "benefit",
+          "title": "Identifying opportunities to upgrade, streamline, or modernize systems",
+          "description": ""
+        },
+        {
+          "_key": "consulting-3",
+          "_type": "benefit",
+          "title": "Clarifying direction and prioritizing initiatives that deliver real value",
+          "description": ""
+        },
+        {
+          "_key": "consulting-4",
+          "_type": "benefit",
+          "title": "Helping you navigate complexity with confidence",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "features",
+      "heading": "Digital Product & Application Development",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "We design and build tools that support real work.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "From web platforms to SaaS and mobile applications, we focus on creating products that are resilient, adaptable, and aligned with long-term goals. We emphasize strong foundations—clean architecture, thoughtful UX, and systems that can grow alongside your organization.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "We build with intention, so today's solution doesn't become tomorrow's obstacle.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ],
+      "benefits": [
+        {
+          "_key": "product-1",
+          "_type": "benefit",
+          "title": "Web, SaaS, and mobile application development",
+          "description": ""
+        },
+        {
+          "_key": "product-2",
+          "_type": "benefit",
+          "title": "Internal tools and operational systems",
+          "description": ""
+        },
+        {
+          "_key": "product-3",
+          "_type": "benefit",
+          "title": "MVPs and iterative product enhancements",
+          "description": ""
+        },
+        {
+          "_key": "product-4",
+          "_type": "benefit",
+          "title": "Long-term technical foundations that support scale",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "features",
+      "heading": "Media Production & Digital Presence",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "We help you maximize your voice and reach.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Technology alone isn't enough—your message needs to be clear, compelling, and delivered through the right channels. We work with you to define, design, and produce the media assets that communicate your mission and connect with your audience.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "The goal is alignment—between your message, your tools, and the people you're trying to reach.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ],
+      "benefits": [
+        {
+          "_key": "media-1",
+          "_type": "benefit",
+          "title": "Brand storytelling and digital presence",
+          "description": ""
+        },
+        {
+          "_key": "media-2",
+          "_type": "benefit",
+          "title": "Websites and content platforms",
+          "description": ""
+        },
+        {
+          "_key": "media-3",
+          "_type": "benefit",
+          "title": "Visual, audio, and multimedia production",
+          "description": ""
+        },
+        {
+          "_key": "media-4",
+          "_type": "benefit",
+          "title": "Systems that integrate media with your broader technology stack",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "richText",
+      "heading": "Why This Matters",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Whether your focus is growth, sustainability, or operational clarity, strong foundations make everything else possible.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "When your strategy is clear, your systems are resilient, and your message is aligned, you can move faster, adapt more easily, and focus on the work that matters most.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "We apply this philosophy across business, product, and media—helping you build the tools, platforms, and systems that support lasting impact.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "cta",
+      "heading": "Let's Build What's Next",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "If you're looking to strengthen your foundations, clarify your direction, or build something meaningful—we're ready to partner.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Let's build systems that work for you.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ],
+      "buttonText": "Get Started",
+      "buttonLink": "/consulting"
+    }
+  ]
 }
-
