@@ -21,7 +21,7 @@ export default function HomeSplash({ children }: { children: React.ReactNode }) 
     try {
       const bodyBg = getComputedStyle(document.body).backgroundColor;
       setBgColor(bodyBg);
-    } catch (e) {
+    } catch {
       // ignore in environments without window
     }
     // populate repeating text grid with phased pattern
@@ -50,7 +50,7 @@ export default function HomeSplash({ children }: { children: React.ReactNode }) 
         return { alt, phase };
       });
       setBgItems(items);
-    } catch (e) {
+    } catch {
       // ignore
     }
     return () => clearTimeout(t);

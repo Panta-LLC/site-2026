@@ -120,7 +120,6 @@ export default async function CategoryPage({ params }: { params: { slug: string 
       {category.benefits && category.benefits.length > 0 && (
         <Feature
           section={{
-            type: "features",
             heading: `Why Choose ${category.title}?`,
             benefits: category.benefits,
           }}
