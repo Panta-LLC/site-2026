@@ -8,8 +8,8 @@
   "sections": [
     {
       "_type": "section",
-      "type": "richText",
-      "heading": "Welcome",
+      "type": "hero",
+      "heading": "Building Strong Digital Foundations for Growing Organizations",
       "content": [
         {
           "_type": "block",
@@ -17,13 +17,154 @@
           "children": [
             {
               "_type": "span",
-              "text": "Manage this content from Sanity.",
+              "text": "Strategy, product development, and media production to help businesses and mission-driven organizations operate more effectively and scale with confidence.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ],
+      "buttonText": "Start a Conversation",
+      "buttonLink": "/consulting"
+    },
+    {
+      "_type": "section",
+      "type": "features",
+      "heading": "What We Do",
+      "content": [],
+      "benefits": [
+        {
+          "_key": "service-1",
+          "_type": "benefit",
+          "title": "Strategic Consulting",
+          "description": "Technology and media strategy to clarify direction, evaluate systems, and identify opportunities."
+        },
+        {
+          "_key": "service-2",
+          "_type": "benefit",
+          "title": "Product & App Development",
+          "description": "Web, SaaS, and internal tools built on strong technical foundations."
+        },
+        {
+          "_key": "service-3",
+          "_type": "benefit",
+          "title": "Media & Digital Presence",
+          "description": "Websites, content platforms, and media systems that amplify your voice and mission."
+        }
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "richText",
+      "heading": "Why Panta",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "For over 15 years, I've helped startups, non-profits, and creative organizations design and build systems that support growth, communication, and impact.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        },
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Panta was created to bring that experience together—combining strategy, product development, and media into a single, intentional practice.",
               "marks": []
             }
           ],
           "markDefs": []
         }
       ]
+    },
+    {
+      "_type": "section",
+      "type": "process",
+      "heading": "How You Work",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "People don't just buy results—they buy how it will feel to work with you.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ],
+      "steps": [
+        {
+          "_key": "step-1",
+          "_type": "benefit",
+          "title": "Listen & Assess",
+          "description": "Understand goals, constraints, and existing systems."
+        },
+        {
+          "_key": "step-2",
+          "_type": "benefit",
+          "title": "Clarify & Plan",
+          "description": "Define direction, prioritize opportunities, and align tools to outcomes."
+        },
+        {
+          "_key": "step-3",
+          "_type": "benefit",
+          "title": "Build & Implement",
+          "description": "Design and deliver thoughtful, scalable solutions."
+        },
+        {
+          "_key": "step-4",
+          "_type": "benefit",
+          "title": "Support & Evolve",
+          "description": "Ensure systems grow with your needs."
+        }
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "whoThisIsFor",
+      "heading": "Who This Is For",
+      "content": [],
+      "goodFit": [
+        "Small to mid-sized businesses",
+        "Independent founders and consultants",
+        "Non-profits and mission-driven organizations",
+        "Teams who value clarity, collaboration, and long-term thinking"
+      ],
+      "notGoodFit": [
+        "You're looking for quick, disposable work",
+        "You already know exactly what tool you want built without discussion"
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "cta",
+      "heading": "Ready to strengthen your foundations?",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Let's talk about what you're building and where you want to go.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ],
+      "buttonText": "Schedule a Call",
+      "buttonLink": "/consulting"
     }
   ]
 }

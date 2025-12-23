@@ -12,6 +12,13 @@ coverage/
 /out/
 .env
 .env.*
+.env.local
+.env.*.local
+# Ignore environment files in apps/packages
+apps/**/.env*
+packages/**/.env*
+*.secret
+.envrc
 .DS_Store
 .vscode/
 .idea/
@@ -51,3 +58,8 @@ storybook-static/
 
 # Local environment overrides
 /local.env
+
+# Ignore Next.js build/cache directories anywhere in the repo
+**/.next/
+apps/**/.next/
+apps/web/.next/cache/*

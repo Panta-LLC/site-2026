@@ -1,0 +1,272 @@
+[
+  {
+    "_type": "service",
+    "title": "Business & Technology Consulting",
+    "category": "consulting",
+    "slug": {
+      "_type": "slug",
+      "current": "business-technology-consulting"
+    },
+    "description": "Strategic technology guidance that transforms your business operations. From initial strategy development to ongoing support, we help you navigate complex technology decisions and implementations.",
+    "content": [
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "At Panta, we understand that technology decisions can make or break your business. Our Business & Technology Consulting services provide comprehensive guidance to help you navigate the complex landscape of modern technology.",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Whether you're looking to adopt new technologies, migrate existing systems, or optimize your current infrastructure, our expert consultants work closely with you to develop strategies that align with your business goals.",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "style": "h2",
+        "children": [
+          {
+            "_type": "span",
+            "text": "Our Consulting Services",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "• Strategy Development & Project Planning",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "• Technology Adoption & Implementation",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "• Technology Migration & Upgrading",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "• Technology Maintenance & Support",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "• Technology Training & Consulting",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      },
+      {
+        "_type": "block",
+        "style": "normal",
+        "children": [
+          {
+            "_type": "span",
+            "text": "• Technology Development",
+            "marks": []
+          }
+        ],
+        "markDefs": []
+      }
+    ]
+  },
+  {
+    "_type": "service",
+    "title": "Product Development",
+    "category": "product-web",
+    "slug": {
+      "_type": "slug",
+      "current": "product-development"
+    },
+    "description": "Turn your vision into a market-ready product. Our comprehensive product development services cover every stage from ideation to launch and beyond.",
+    "sections": [
+      {
+        "_type": "section",
+        "type": "serviceDetails",
+        "content": [
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "Bringing a product from concept to market requires expertise, dedication, and a proven process. Panta's Product Development services guide you through every phase of the product lifecycle.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "From initial ideation and design to development, testing, and launch, we work with you to create products that not only meet market needs but exceed user expectations. Our comprehensive approach ensures your product is built for success from day one.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "serviceList": [
+          "Product Ideation & Design",
+          "Product Development & Testing",
+          "Product Launch & Maintenance",
+          "Product Support & Training",
+          "Product Consulting"
+        ]
+      }
+    ]
+  },
+  {
+    "_type": "service",
+    "title": "Web Development",
+    "category": "product-web",
+    "slug": {
+      "_type": "slug",
+      "current": "web-development"
+    },
+    "description": "Build powerful, scalable web applications that engage users and drive business results. We create modern, responsive websites and web applications tailored to your needs.",
+    "sections": [
+      {
+        "_type": "section",
+        "type": "serviceDetails",
+        "content": [
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "In today's digital-first world, your web presence is often the first impression customers have of your business. Panta's Web Development services create exceptional online experiences that convert visitors into customers.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "We build modern, responsive websites and web applications using cutting-edge technologies. From initial design to deployment and ongoing maintenance, we ensure your web presence is fast, secure, and optimized for success.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "serviceList": [
+          "Web Design & Development",
+          "Web Testing & Launch",
+          "Web Maintenance & Support",
+          "Web Training & Consulting"
+        ]
+      }
+    ]
+  },
+  {
+    "_type": "service",
+    "title": "Media Production",
+    "category": "media-production",
+    "slug": {
+      "_type": "slug",
+      "current": "media-production"
+    },
+    "description": "We produce high-quality media content for businesses and organizations.",
+    "sections": [
+      {
+        "_type": "section",
+        "type": "serviceDetails",
+        "content": [
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "At Panta, we produce high-quality media content that helps businesses and organizations communicate effectively with their audiences. Our comprehensive media production services cover everything from video and audio production to marketing, advertising, and creative services.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          },
+          {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+              {
+                "_type": "span",
+                "text": "Whether you need professional video content, strategic marketing campaigns, or creative branding solutions, our team brings expertise and creativity to every project. We work closely with you to understand your goals and deliver media that resonates with your audience and drives results.",
+                "marks": []
+              }
+            ],
+            "markDefs": []
+          }
+        ],
+        "serviceList": [
+          "Video Production",
+          "Audio Production",
+          "Marketing",
+          "Advertising",
+          "Photography",
+          "Editing",
+          "Animation",
+          "Motion Graphics",
+          "Branding"
+        ]
+      }
+    ]
+  }
+]

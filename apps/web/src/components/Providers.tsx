@@ -1,12 +1,25 @@
 "use client";
 import React from "react";
 import { GrowthBookProvider } from "@growthbook/growthbook-react";
-import { AnalyticsProvider } from "../../../../packages/lib/src/analytics/AnalyticsProvider";
+import { AnalyticsProvider } from "@panta/lib";
+import { ScheduleModalProvider } from "@panta/ui/src/sections/ScheduleModalContext";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({ 
+  children,
+  email,
+  phone,
+}: { 
+  children: React.ReactNode;
+  email?: string;
+  phone?: string;
+}) {
   return (
     <AnalyticsProvider>
-      <GrowthBookProvider>{children}</GrowthBookProvider>
+      <GrowthBookProvider>
+        <ScheduleModalProvider email={email} phone={phone}>
+          {children}
+        </ScheduleModalProvider>
+      </GrowthBookProvider>
     </AnalyticsProvider>
   );
 }
