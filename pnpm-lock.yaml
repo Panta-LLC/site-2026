@@ -53,7 +53,7 @@ importers:
     dependencies:
       '@growthbook/growthbook-react':
         specifier: ^0.22.0
-        version: 0.22.0
+        version: 0.22.0(react@19.2.3)
       '@panta/lib':
         specifier: workspace:*
         version: link:../../packages/lib
@@ -81,13 +81,16 @@ importers:
       nodemailer:
         specifier: ^7.0.12
         version: 7.0.12
+      react:
+        specifier: ^19.2.1
+        version: 19.2.3
       react-dom:
         specifier: ^19.2.1
         version: 19.2.3(react@19.2.3)
     devDependencies:
       '@storybook/react':
         specifier: ^8.6.14
-        version: 8.6.15(@storybook/test@8.6.14)(react-dom@19.2.3)(storybook@8.6.15)(typescript@5.9.3)
+        version: 8.6.15(@storybook/test@8.6.14)(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)(typescript@5.9.3)
       '@storybook/test':
         specifier: ^8.6.14
         version: 8.6.14(storybook@8.6.15)
@@ -96,7 +99,7 @@ importers:
         version: 6.9.1
       '@testing-library/react':
         specifier: ^14.2.1
-        version: 14.3.1(@types/react@18.3.27)(react-dom@19.2.3)
+        version: 14.3.1(@types/react@18.3.27)(react-dom@19.2.3)(react@19.2.3)
       '@types/jest':
         specifier: ^30.0.0
         version: 30.0.0
@@ -176,7 +179,7 @@ importers:
         version: 8.6.14(@types/react@18.3.27)(storybook@8.6.15)
       '@storybook/react':
         specifier: ^8.6.14
-        version: 8.6.15(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)(typescript@5.9.3)
+        version: 8.6.15(@storybook/test@8.6.14)(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)(typescript@5.9.3)
       '@storybook/react-vite':
         specifier: ^8.6.14
         version: 8.6.15(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)(typescript@5.9.3)(vite@6.4.1)
@@ -2977,13 +2980,14 @@ packages:
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
     dev: false
 
-  /@growthbook/growthbook-react@0.22.0:
+  /@growthbook/growthbook-react@0.22.0(react@19.2.3):
     resolution: {integrity: sha512-M9lB5Set4fMizePC5yr75nfW5ZLylJ7xZNYL0J9zRwT9tDQ24mZiZkzSW+qpFXlL+OzTIfBnD4RjQJfeouyshQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0
     dependencies:
       '@growthbook/growthbook': 0.32.0
+      react: 19.2.3
     dev: false
 
   /@growthbook/growthbook@0.22.0:
@@ -5715,7 +5719,7 @@ packages:
       '@joshwooding/vite-plugin-react-docgen-typescript': 0.5.0(typescript@5.9.3)(vite@6.4.1)
       '@rollup/pluginutils': 5.3.0
       '@storybook/builder-vite': 8.6.15(storybook@8.6.15)(vite@6.4.1)
-      '@storybook/react': 8.6.15(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)(typescript@5.9.3)
+      '@storybook/react': 8.6.15(@storybook/test@8.6.14)(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)(typescript@5.9.3)
       find-up: 5.0.0
       magic-string: 0.30.21
       react: 19.2.3
@@ -5731,7 +5735,7 @@ packages:
       - typescript
     dev: true
 
-  /@storybook/react@8.6.15(@storybook/test@8.6.14)(react-dom@19.2.3)(storybook@8.6.15)(typescript@5.9.3):
+  /@storybook/react@8.6.15(@storybook/test@8.6.14)(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)(typescript@5.9.3):
     resolution: {integrity: sha512-hdnhlJg+YkpPMOw2hvK7+mhdxAbguA+TFTIAzVV9CeUYoHDIZAsgeKVhRmgZGN20NGjRN5ZcwkplAMJnF9v+6w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
@@ -5752,32 +5756,6 @@ packages:
       '@storybook/preview-api': 8.6.15(storybook@8.6.15)
       '@storybook/react-dom-shim': 8.6.15(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)
       '@storybook/test': 8.6.14(storybook@8.6.15)
-      '@storybook/theming': 8.6.15(storybook@8.6.15)
-      react-dom: 19.2.3(react@19.2.3)
-      storybook: 8.6.15
-      typescript: 5.9.3
-    dev: true
-
-  /@storybook/react@8.6.15(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)(typescript@5.9.3):
-    resolution: {integrity: sha512-hdnhlJg+YkpPMOw2hvK7+mhdxAbguA+TFTIAzVV9CeUYoHDIZAsgeKVhRmgZGN20NGjRN5ZcwkplAMJnF9v+6w==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      '@storybook/test': 8.6.15
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
-      storybook: ^8.6.15
-      typescript: '>= 4.2.x'
-    peerDependenciesMeta:
-      '@storybook/test':
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@storybook/components': 8.6.15(storybook@8.6.15)
-      '@storybook/global': 5.0.0
-      '@storybook/manager-api': 8.6.15(storybook@8.6.15)
-      '@storybook/preview-api': 8.6.15(storybook@8.6.15)
-      '@storybook/react-dom-shim': 8.6.15(react-dom@19.2.3)(react@19.2.3)(storybook@8.6.15)
       '@storybook/theming': 8.6.15(storybook@8.6.15)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
@@ -5917,7 +5895,7 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/react@14.3.1(@types/react@18.3.27)(react-dom@19.2.3):
+  /@testing-library/react@14.3.1(@types/react@18.3.27)(react-dom@19.2.3)(react@19.2.3):
     resolution: {integrity: sha512-H99XjUhWQw0lTgyMN05W3xQG1Nh4lq574D8keFf1dDoNTJgp66VbJozRaczoF+wsiaPJNt/TcnfpLGufGxSrZQ==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -5927,6 +5905,7 @@ packages:
       '@babel/runtime': 7.28.4
       '@testing-library/dom': 9.3.4
       '@types/react-dom': 18.3.7(@types/react@18.3.27)
+      react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
     transitivePeerDependencies:
       - '@types/react'
