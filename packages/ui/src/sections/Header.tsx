@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useScheduleModal } from "./ScheduleModalContext";
 
@@ -36,7 +37,6 @@ export function Header({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   return (
     <header
       className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
@@ -49,8 +49,8 @@ export function Header({
             notificationBar.tone === "warning"
               ? "bg-yellow-50 text-yellow-900"
               : notificationBar.tone === "success"
-                ? "bg-green-50 text-green-900"
-                : "bg-neutral-50 text-neutral-800"
+              ? "bg-green-50 text-green-900"
+              : "bg-neutral-50 text-neutral-800"
           }`}
         >
           {notificationBar.url ? (
@@ -66,11 +66,16 @@ export function Header({
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           {logo?.asset?.url ? (
-            <img
-              src={logo.asset.url}
+            <Image
+              src={
+                logo.asset.url.startsWith("http")
+                  ? logo.asset.url
+                  : `https://cdn.sanity.io${logo.asset.url}`
+              }
               alt={logo.alt || title || "Site logo"}
               width={150}
-              className="rounded transition-all duration-300"
+              height={50}
+              className="rounded transition-all duration-300 object-contain"
               style={
                 isScrolled
                   ? {
