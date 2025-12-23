@@ -55,11 +55,68 @@ const Section = ({ section }: { section: any }) => {
 };
 
 export default async function HomePage() {
-  const homepage = await getHomepage();
+  let homepage;
+  try {
+    homepage = await getHomepage();
+  } catch (error) {
+    console.error("Failed to fetch homepage:", error);
+  }
+
+  // If no homepage data, show a default hero section
+  if (!homepage?.sections || homepage.sections.length === 0) {
+    return (
+      <main>
+        <Hero
+          section={{
+            heading: "Building Strong Digital Foundations for Growing Organizations",
+            content: [
+              {
+                _type: "block",
+                style: "normal",
+                children: [
+                  {
+                    _type: "span",
+                    text: "Strategy, product development, and media production to help businesses and mission-driven organizations operate more effectively and scale with confidence.",
+                    marks: [],
+                  },
+                ],
+                markDefs: [],
+              },
+            ],
+            buttonText: "Start a Conversation",
+            buttonLink: "/consulting",
+          }}
+        />
+        <Feature
+          section={{
+            heading: "What We Do",
+            benefits: [
+              {
+                _key: "service-1",
+                title: "Strategic Consulting",
+                description: "Technology and media strategy to clarify direction, evaluate systems, and identify opportunities.",
+              },
+              {
+                _key: "service-2",
+                title: "Product & App Development",
+                description: "Web, SaaS, and internal tools built on strong technical foundations.",
+              },
+              {
+                _key: "service-3",
+                title: "Media & Digital Presence",
+                description: "Websites, content platforms, and media systems that amplify your voice and mission.",
+              },
+            ],
+          }}
+        />
+        <Footer />
+      </main>
+    );
+  }
 
   return (
     <main>
-      {homepage?.sections?.map((section: any, i: number) => (
+      {homepage.sections.map((section: any, i: number) => (
         <Section key={i} section={section} />
       ))}
       <Footer />

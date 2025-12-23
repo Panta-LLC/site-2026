@@ -262,8 +262,12 @@ export async function getHomepage() {
   }`;
   try {
     const data = await sanityClient.fetch(query);
+    if (!data) {
+      console.warn("Homepage not found in Sanity. Make sure a page with slug 'home' exists.");
+    }
     return data || null;
   } catch (e) {
+    console.error("Error fetching homepage from Sanity:", e);
     return null;
   }
 }
