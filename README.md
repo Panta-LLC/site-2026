@@ -28,6 +28,7 @@ Set env vars by copying `.env.example` to `.env.local` in each app:
 - `apps/studio/.env.local`: `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`
 - `apps/web/.env.local`: 
   - `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_READ_TOKEN` (optional)
+  - **Important**: For production (Vercel), set `NEXT_PUBLIC_SANITY_DATASET` to `"production"` (not `"local"`)
   - `NEXT_PUBLIC_MIXPANEL_TOKEN`, `NEXT_PUBLIC_GROWTHBOOK_API_HOST`, `NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY`
   - Email configuration (choose one):
     - **SMTP**: `SMTP_HOST`, `SMTP_PORT` (default: 587), `SMTP_USER`, `SMTP_PASS`, `SMTP_SECURE` (true for 465), `SMTP_FROM_EMAIL`

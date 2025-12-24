@@ -266,8 +266,17 @@ export async function getHomepage() {
       console.warn("Homepage not found in Sanity. Make sure a page with slug 'home' exists.");
     }
     return data || null;
-  } catch (e) {
-    console.error("Error fetching homepage from Sanity:", e);
+  } catch (e: any) {
+    // Check if it's a dataset error
+    if (e?.response?.body?.message?.includes("Dataset") && e?.response?.body?.message?.includes("not found")) {
+      console.error(
+        `Sanity dataset error: ${e.response.body.message}. ` +
+        `Please check that NEXT_PUBLIC_SANITY_DATASET is set correctly in your environment variables. ` +
+        `It should be "production" (or your production dataset name), not "local".`
+      );
+    } else {
+      console.error("Error fetching homepage from Sanity:", e);
+    }
     return null;
   }
 }

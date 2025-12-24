@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+// @ts-expect-error - nodemailer types don't have default export but runtime does
 import nodemailer from "nodemailer";
 
 interface ScheduleRequest {

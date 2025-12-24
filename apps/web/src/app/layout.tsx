@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const site = await fetchSiteConfig().catch(() => null);
-  console.log("site", site);
 
   return (
     <html lang="en" className="min-h-full">
