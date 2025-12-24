@@ -17,10 +17,16 @@ interface HeroProps {
 }
 
 const SCHEDULE_CTA_TEXT = ["Schedule a Call", "schedule a call"];
-const MESSAGE_CTA_TEXT = ["Start a Conversation", "Send a Message", "start a conversation", "send a message", "Get in Touch", "get in touch"];
+const MESSAGE_CTA_TEXT = [
+  "Start a Conversation",
+  "Send a Message",
+  "start a conversation",
+  "send a message",
+  "Get in Touch",
+  "get in touch",
+];
 
 export function Hero({ section }: HeroProps) {
-
   const heading = section?.heading ?? "Welcome to Panta";
 
   const content = section?.content ?? [
@@ -33,12 +39,14 @@ export function Hero({ section }: HeroProps) {
   ];
 
   const scheduleModal = useScheduleModal();
-  const isScheduleCTA = scheduleModal && section?.buttonText && SCHEDULE_CTA_TEXT.some(text => 
-    section.buttonText.toLowerCase().includes(text.toLowerCase())
-  );
-  const isMessageCTA = scheduleModal && section?.buttonText && MESSAGE_CTA_TEXT.some(text => 
-    section.buttonText.toLowerCase().includes(text.toLowerCase())
-  );
+  const isScheduleCTA =
+    scheduleModal &&
+    section?.buttonText &&
+    SCHEDULE_CTA_TEXT.some((text) => section.buttonText.toLowerCase().includes(text.toLowerCase()));
+  const isMessageCTA =
+    scheduleModal &&
+    section?.buttonText &&
+    MESSAGE_CTA_TEXT.some((text) => section.buttonText.toLowerCase().includes(text.toLowerCase()));
   const shouldOpenModal = isScheduleCTA || isMessageCTA;
 
   const handleButtonClick = (e: React.MouseEvent) => {
@@ -50,7 +58,7 @@ export function Hero({ section }: HeroProps) {
   };
 
   return (
-    <section className="py-24 text-white bg-gradient-to-b bg-highlight min-h-[85vh] flex content-center flex-col justify-center items-center pt-32">
+    <section className="p-6 py-24 text-white bg-gradient-to-b bg-highlight min-h-[85vh] flex content-center flex-col justify-center items-center pt-32">
       <div className="max-w-6xl sm:px-8 lg:px-12 mx-auto flex flex-col justify-center items-center text-center">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl mb-6">
           {heading}
@@ -58,8 +66,9 @@ export function Hero({ section }: HeroProps) {
         <div className="text-lg md:text-xl lg:text-2xl prose dark:prose-invert mt-4 max-w-3xl mb-8">
           <PortableText content={content} />
         </div>
-        {section?.buttonText && section?.buttonLink && (
-          shouldOpenModal ? (
+        {section?.buttonText &&
+          section?.buttonLink &&
+          (shouldOpenModal ? (
             <button
               onClick={handleButtonClick}
               className="inline-block px-8 py-4 bg-white text-black rounded-lg font-semibold text-lg hover:bg-neutral-100 transition-colors hover:shadow-xl"
@@ -73,8 +82,7 @@ export function Hero({ section }: HeroProps) {
             >
               {section.buttonText}
             </Link>
-          )
-        )}
+          ))}
       </div>
     </section>
   );
