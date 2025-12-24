@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useScheduleModal } from "./ScheduleModalContext";
+import { PortableText } from "./PortableText";
 
 interface HeroSection {
   heading?: string;
@@ -19,29 +20,6 @@ const SCHEDULE_CTA_TEXT = ["Schedule a Call", "schedule a call"];
 const MESSAGE_CTA_TEXT = ["Start a Conversation", "Send a Message", "start a conversation", "send a message", "Get in Touch", "get in touch"];
 
 export function Hero({ section }: HeroProps) {
-  const renderContent = (content: any) => {
-    if (!content) return null;
-    if (typeof content === "string") return content;
-    if (Array.isArray(content)) {
-      return content.map((block: any, i: number) => {
-        if (!block) return null;
-        if (block._type === "block" && Array.isArray(block.children)) {
-          const text = block.children.map((c: any) => c.text || "").join("");
-          return (
-            <p key={block._key || i} className="my-4">
-              {text}
-            </p>
-          );
-        }
-        return (
-          <pre key={block._key || i} className="my-4 whitespace-pre-wrap">
-            {JSON.stringify(block)}
-          </pre>
-        );
-      });
-    }
-    return String(content);
-  };
 
   const heading = section?.heading ?? "Welcome to Panta";
 
@@ -78,7 +56,7 @@ export function Hero({ section }: HeroProps) {
           {heading}
         </h1>
         <div className="text-lg md:text-xl lg:text-2xl prose dark:prose-invert mt-4 max-w-3xl mb-8">
-          {renderContent(content)}
+          <PortableText content={content} />
         </div>
         {section?.buttonText && section?.buttonLink && (
           shouldOpenModal ? (

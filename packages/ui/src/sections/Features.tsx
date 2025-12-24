@@ -1,4 +1,5 @@
 import React from "react";
+import { PortableText } from "./PortableText";
 
 interface Benefit {
   _key?: string;
@@ -23,29 +24,6 @@ const items = [
 ];
 
 export function Feature({ section }: FeatureProps) {
-  const renderContent = (content: any) => {
-    if (!content) return null;
-    if (typeof content === "string") return content;
-    if (Array.isArray(content)) {
-      return content.map((block: any, i: number) => {
-        if (!block) return null;
-        if (block._type === "block" && Array.isArray(block.children)) {
-          const text = block.children.map((c: any) => c.text || "").join("");
-          return (
-            <p key={block._key || i} className="my-2">
-              {text}
-            </p>
-          );
-        }
-        return (
-          <pre key={block._key || i} className="my-2 whitespace-pre-wrap">
-            {JSON.stringify(block)}
-          </pre>
-        );
-      });
-    }
-    return String(content);
-  };
 
   const benefits = section?.benefits || [];
 
@@ -59,7 +37,7 @@ export function Feature({ section }: FeatureProps) {
         )}
         {section?.content && (
           <div className="prose dark:prose-invert mt-4 text-center mb-12">
-            {renderContent(section.content)}
+            <PortableText content={section.content} />
           </div>
         )}
         {benefits.length > 0 ? (

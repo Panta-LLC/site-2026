@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useScheduleModal } from "./ScheduleModalContext";
+import { PortableText } from "./PortableText";
 
 interface CTAProps {
   section?: {
@@ -36,27 +37,6 @@ export function CTA({ section, heading, content, buttonText, buttonLink }: CTAPr
   );
   const shouldOpenModal = isScheduleCTA || isMessageCTA;
 
-  const renderContent = (content: any) => {
-    if (!content) return null;
-    if (typeof content === "string") {
-      return <p className="text-neutral-700 dark:text-neutral-300">{content}</p>;
-    }
-    if (Array.isArray(content)) {
-      return content.map((block: any, i: number) => {
-        if (!block) return null;
-        if (block._type === "block" && Array.isArray(block.children)) {
-          const text = block.children.map((c: any) => c.text || "").join("");
-          return (
-            <p key={block._key || i} className="mt-3 text-neutral-700 dark:text-neutral-300">
-              {text}
-            </p>
-          );
-        }
-        return null;
-      });
-    }
-    return <p className="text-neutral-700 dark:text-neutral-300">{String(content)}</p>;
-  };
 
   const handleButtonClick = (e: React.MouseEvent) => {
     if (shouldOpenModal && scheduleModal) {
@@ -70,7 +50,9 @@ export function CTA({ section, heading, content, buttonText, buttonLink }: CTAPr
     <section className="px-6 py-20 sm:px-8 lg:px-12 bg-light">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">{finalHeading}</h2>
-        <div>{renderContent(finalContent)}</div>
+        <div className="text-neutral-700 dark:text-neutral-300">
+          <PortableText content={finalContent} />
+        </div>
         {shouldOpenModal ? (
           <button
             onClick={handleButtonClick}

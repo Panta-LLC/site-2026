@@ -1,4 +1,5 @@
 import React from "react";
+import { PortableText } from "./PortableText";
 import Link from "next/link";
 
 interface ProcessStep {
@@ -18,25 +19,6 @@ interface ProcessProps {
 }
 
 export function Process({ section }: ProcessProps) {
-  const renderContent = (content: any) => {
-    if (!content) return null;
-    if (typeof content === "string") return content;
-    if (Array.isArray(content)) {
-      return content.map((block: any, i: number) => {
-        if (!block) return null;
-        if (block._type === "block" && Array.isArray(block.children)) {
-          const text = block.children.map((c: any) => c.text || "").join("");
-          return (
-            <p key={block._key || i} className="my-2 text-neutral-700 dark:text-neutral-300">
-              {text}
-            </p>
-          );
-        }
-        return null;
-      });
-    }
-    return String(content);
-  };
 
   const steps = section?.steps || [];
 
@@ -49,8 +31,8 @@ export function Process({ section }: ProcessProps) {
           </h2>
         )}
         {section?.content && (
-          <div className="prose dark:prose-invert max-w-3xl mx-auto text-center mb-12">
-            {renderContent(section.content)}
+          <div className="prose dark:prose-invert max-w-3xl mx-auto text-center mb-12 text-neutral-700 dark:text-neutral-300">
+            <PortableText content={section.content} />
           </div>
         )}
         {steps.length > 0 && (

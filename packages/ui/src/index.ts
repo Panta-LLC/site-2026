@@ -11,3 +11,4 @@ export * from "./sections/Process";
 export * from "./sections/WhoThisIsFor";
 export * from "./sections/ContactModal";
 export * from "./sections/ScheduleModalContext";
+export * from "./sections/PortableText";

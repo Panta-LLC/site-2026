@@ -7,6 +7,7 @@ import { Process } from "@panta/ui/src/sections/Process";
 import { WhoThisIsFor } from "@panta/ui/src/sections/WhoThisIsFor";
 import { CTA } from "@panta/ui/src/sections/CTA";
 import { Footer } from "@panta/ui/src/sections/Footer";
+import { PortableText } from "@panta/ui/src/sections/PortableText";
 
 const Section = ({ section }: { section: any }) => {
   switch (section.type) {
@@ -34,16 +35,8 @@ const Section = ({ section }: { section: any }) => {
               </h2>
             )}
             {section.content && (
-              <div className="prose dark:prose-invert max-w-none">
-                {section.content.map((block: any, i: number) => {
-                  if (!block || block._type !== "block") return null;
-                  const text = block.children?.map((c: any) => c.text || "").join("") || "";
-                  return (
-                    <p key={block._key || i} className="text-lg leading-relaxed mb-4 text-neutral-700 dark:text-neutral-300">
-                      {text}
-                    </p>
-                  );
-                })}
+              <div className="prose dark:prose-invert max-w-none text-neutral-700 dark:text-neutral-300">
+                <PortableText content={section.content} />
               </div>
             )}
           </div>

@@ -16,6 +16,7 @@
     "@growthbook/growthbook-react": "^0.22.0",
     "@panta/lib": "workspace:*",
     "@panta/ui": "workspace:*",
+    "@portabletext/react": "^6.0.0",
     "@sanity/client": "^6.18.2",
     "@sanity/image-url": "^1.0.2",
     "clsx": "^2.1.1",

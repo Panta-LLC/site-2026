@@ -1,4 +1,5 @@
 import React from "react";
+import { PortableText } from "./PortableText";
 
 interface ServiceDetailsProps {
   section?: {
@@ -8,28 +9,6 @@ interface ServiceDetailsProps {
   };
 }
 
-const renderContent = (content: any) => {
-  if (!content) return null;
-  if (typeof content === "string") return content;
-  if (Array.isArray(content)) {
-    return content.map((block: any, i: number) => {
-      if (!block) return null;
-      if (block._type === "block" && Array.isArray(block.children)) {
-        const text = block.children.map((c: any) => c.text || "").join("");
-        return (
-          <p
-            key={block._key || i}
-            className="mb-4 text-neutral-700 dark:text-neutral-300 leading-relaxed"
-          >
-            {text}
-          </p>
-        );
-      }
-      return null;
-    });
-  }
-  return String(content);
-};
 
 export function ServiceDetails({ section }: ServiceDetailsProps) {
   const content = section?.content;
@@ -46,7 +25,9 @@ export function ServiceDetails({ section }: ServiceDetailsProps) {
         {content && (
           <div className="md:col-span-2">
             {heading && <h2 className="text-2xl font-bold mb-4">{heading}</h2>}
-            <div className="prose dark:prose-invert max-w-none">{renderContent(content)}</div>
+            <div className="prose dark:prose-invert max-w-none text-neutral-700 dark:text-neutral-300">
+              <PortableText content={content} />
+            </div>
           </div>
         )}
 
