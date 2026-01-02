@@ -71,7 +71,7 @@ function SchedulingForm({
             <div className="flex-1">
               <div className="font-medium">Next available slot</div>
               <div className="text-sm text-neutral-600 dark:text-neutral-400">
-                We'll find the next time that works for both of us
+                We&apos;ll find the next time that works for both of us
               </div>
             </div>
           </label>
@@ -88,7 +88,7 @@ function SchedulingForm({
             <div className="flex-1">
               <div className="font-medium">Available any time on selected days</div>
               <div className="text-sm text-neutral-600 dark:text-neutral-400">
-                Pick dates, we'll schedule anytime that day
+                Pick dates, we&apos;ll schedule anytime that day
               </div>
             </div>
           </label>
@@ -115,7 +115,7 @@ function SchedulingForm({
       {schedulingMode === "nextAvailable" && (
         <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
           <p className="text-sm text-neutral-700 dark:text-neutral-300">
-            We'll contact you to find the next available time that works for both of us.
+            We&apos;ll contact you to find the next available time that works for both of us.
           </p>
         </div>
       )}
@@ -330,7 +330,7 @@ function TemplateSelector({
     {
       mode: "message",
       title: "Send a Message",
-      description: "Send us a message and we'll get back to you",
+      description: "Send us a message and we&apos;ll get back to you",
     },
     {
       mode: "consulting",
@@ -806,7 +806,7 @@ export function ContactModal({
                       className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-brand resize-none"
                       placeholder={
                         selectedMode === "schedule"
-                          ? "Tell us about your project or what you'd like to discuss..."
+                          ? "Tell us about your project or what you&apos;d like to discuss..."
                           : "Tell us about your project, questions, or how we can help..."
                       }
                       required={selectedMode === "message"}
@@ -837,7 +837,7 @@ export function ContactModal({
                   <div className="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                     <h3 className="text-lg font-semibold mb-2">What happens next?</h3>
                     <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                      We'll review your inquiry and get back to you within 1-2 business days to
+                      We&apos;ll review your inquiry and get back to you within 1-2 business days to
                       discuss your project and how we can help.
                     </p>
                   </div>
@@ -946,7 +946,7 @@ export function ContactModal({
             {submitStatus === "success" && (
               <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
                 <p className="text-sm text-green-800 dark:text-green-200 font-medium">
-                  ✓ Request submitted successfully! We'll be in touch soon.
+                  ✓ Request submitted successfully! We&apos;ll be in touch soon.
                 </p>
               </div>
             )}

@@ -24,7 +24,7 @@ export default function ContactPage() {
         <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
         <div className="prose dark:prose-invert max-w-none">
           <p className="mb-6 text-lg text-neutral-700 dark:text-neutral-300">
-            We'd love to hear from you. Use the contact form below to get in touch, or reach out
+            We&apos;d love to hear from you. Use the contact form below to get in touch, or reach out
             directly via email or phone.
           </p>
           {scheduleModal && (
