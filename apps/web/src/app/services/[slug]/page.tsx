@@ -7,7 +7,37 @@ import { CTA } from "@panta/ui/src/sections/CTA";
 import { Footer } from "@panta/ui/src/sections/Footer";
 import { notFound } from "next/navigation";
 
-const Section = ({ section }: { section: any }) => {
+interface ContentBlock {
+  _type: string;
+  _key?: string;
+  children?: Array<{ text?: string; _type?: string }>;
+  style?: string;
+  markDefs?: unknown[];
+}
+
+interface Section {
+  type: string;
+  heading?: string;
+  content?: unknown;
+  buttonText?: string;
+  buttonLink?: string;
+  benefits?: Array<{ _key?: string; title?: string; description?: string; icon?: string }>;
+  services?: unknown[];
+  serviceCategories?: unknown[];
+  serviceList?: string[];
+  slides?: unknown[];
+  steps?: Array<{ _key?: string; title?: string; description?: string }>;
+  goodFit?: string[];
+  notGoodFit?: string[];
+}
+
+interface Category {
+  _id?: string;
+  title?: string;
+  value?: string;
+}
+
+const Section = ({ section }: { section: Section }) => {
   switch (section.type) {
     case "hero":
       return <Hero section={section} />;
@@ -25,14 +55,14 @@ const Section = ({ section }: { section: any }) => {
   }
 };
 
-const renderContent = (content: any) => {
+const renderContent = (content: unknown) => {
   if (!content) return null;
   if (typeof content === "string") return content;
   if (Array.isArray(content)) {
-    return content.map((block: any, i: number) => {
+    return content.map((block: ContentBlock, i: number) => {
       if (!block) return null;
       if (block._type === "block" && Array.isArray(block.children)) {
-        const text = block.children.map((c: any) => c.text || "").join("");
+        const text = block.children.map((c) => c.text || "").join("");
         return (
           <p key={block._key || i} className="my-4 text-lg leading-relaxed">
             {text}
@@ -45,7 +75,7 @@ const renderContent = (content: any) => {
   return String(content);
 };
 
-const getCategoryTitle = (category: any): string => {
+const getCategoryTitle = (category: Category | string | null | undefined): string => {
   if (!category) return "Uncategorized";
   if (typeof category === "string") return category;
   return category.title || category.value || "Uncategorized";
@@ -89,7 +119,7 @@ export default async function ServicePage({ params }: { params: { slug: string }
           {/* Render CMS sections if available */}
           {service.sections?.length ? (
             <div className="mt-12">
-              {service.sections.map((s: any, i: number) => (
+              {service.sections.map((s: Section, i: number) => (
                 <Section key={i} section={s} />
               ))}
             </div>
