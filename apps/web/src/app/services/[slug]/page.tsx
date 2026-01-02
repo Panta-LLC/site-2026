@@ -15,6 +15,31 @@ interface ContentBlock {
   markDefs?: unknown[];
 }
 
+interface ServiceCategory {
+  _id: string;
+  title: string;
+  value: string;
+  description?: string;
+  previewImage?: {
+    asset?: {
+      _id?: string;
+      url?: string;
+    };
+    alt?: string;
+  };
+  mainHeading?: string;
+}
+
+interface Service {
+  _id: string;
+  title: string;
+  category?: ServiceCategory | string | null;
+  description: string;
+  slug: {
+    current: string;
+  };
+}
+
 interface Section {
   type: string;
   heading?: string;
@@ -22,8 +47,8 @@ interface Section {
   buttonText?: string;
   buttonLink?: string;
   benefits?: Array<{ _key?: string; title?: string; description?: string; icon?: string }>;
-  services?: unknown[];
-  serviceCategories?: unknown[];
+  services?: Service[];
+  serviceCategories?: ServiceCategory[];
   serviceList?: string[];
   slides?: unknown[];
   steps?: Array<{ _key?: string; title?: string; description?: string }>;
