@@ -5,7 +5,9 @@ export const SITE_CONFIG_QUERY = `*[_type == "siteConfig"][0]{
   logo{asset->{_id, url}, alt},
   menu[]{title, url, internal},
   footer[]{title, links[]{label, url}},
-  notificationBar{enabled, text, url, tone}
+  notificationBar{enabled, text, url, tone},
+  contactEmail,
+  contactPhone
 }`;
 
 export async function fetchSiteConfig() {

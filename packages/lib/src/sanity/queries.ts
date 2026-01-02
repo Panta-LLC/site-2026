@@ -213,6 +213,13 @@ export async function getHomepage() {
       content,
       buttonText,
       buttonLink,
+      image{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
       serviceList,
       benefits[]{
         _key,

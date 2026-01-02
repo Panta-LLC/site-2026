@@ -59,6 +59,18 @@ export default {
       ],
     },
     {
+      name: "contactEmail",
+      title: "Contact Email",
+      type: "string",
+      description: "Primary contact email address",
+    },
+    {
+      name: "contactPhone",
+      title: "Contact Phone",
+      type: "string",
+      description: "Primary contact phone number",
+    },
+    {
       name: "notificationBar",
       title: "Notification Bar",
       type: "object",

@@ -17,16 +17,18 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const site = await fetchSiteConfig().catch(() => null);
 
+  // Contact info priority: siteConfig > env vars > defaults
+  const contactEmail =
+    site?.contactEmail || process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@panta.com";
+  const contactPhone = site?.contactPhone || process.env.NEXT_PUBLIC_CONTACT_PHONE || "";
+
   return (
     <html lang="en" className="min-h-full">
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/jpq4nju.css" />
       </head>
       <body className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100">
-        <Providers
-          email={process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@panta.com"}
-          phone={process.env.NEXT_PUBLIC_CONTACT_PHONE || "(555) 123-4567"}
-        >
+        <Providers email={contactEmail} phone={contactPhone}>
           {/* Header uses site-wide content from Sanity */}
           <Header
             title={site?.title}

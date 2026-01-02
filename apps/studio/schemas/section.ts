@@ -49,7 +49,16 @@ export default defineType({
       type: "array",
       of: [{ type: "block" }],
     }),
-    defineField({ name: "image", type: "image" }),
+    defineField({
+      name: "image",
+      type: "image",
+      title: "Background Image",
+      description: "Background image for hero section",
+      options: {
+        hotspot: true,
+      },
+      hidden: ({ parent }) => parent?.type !== "hero",
+    }),
     // Button fields (used by both Hero and CTA sections)
     defineField({
       name: "buttonText",

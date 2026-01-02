@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 interface ScheduleRequest {
+  name: string;
+  email: string;
+  phone?: string;
+  website?: string;
   schedulingMode: "nextAvailable" | "anyTime" | "specificTimes";
   timeRanges?: Array<{
     date: string;
@@ -97,6 +101,12 @@ export async function POST(request: NextRequest) {
     const body: ScheduleRequest = await request.json();
 
     // Validate required fields
+    if (!body.name || !body.name.trim()) {
+      return NextResponse.json({ error: "Name is required" }, { status: 400 });
+    }
+    if (!body.email || !body.email.trim()) {
+      return NextResponse.json({ error: "Email is required" }, { status: 400 });
+    }
     if (!body.schedulingMode) {
       return NextResponse.json({ error: "Scheduling mode is required" }, { status: 400 });
     }
@@ -107,9 +117,16 @@ export async function POST(request: NextRequest) {
       process.env.SCHEDULE_CALL_EMAIL || process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@panta.com";
     const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.GMAIL_USER || "noreply@panta.com";
 
+    const phoneText = body.phone ? `\nPhone: ${body.phone}` : "";
+    const websiteText = body.website ? `\nWebsite: ${body.website}` : "";
+
     const emailSubject = "New Call Scheduling Request";
     const emailBody = `
 New call scheduling request received:
+
+Contact Information:
+Name: ${body.name.trim()}
+Email: ${body.email.trim()}${phoneText}${websiteText}
 
 Scheduling Preference: ${body.schedulingMode}
 

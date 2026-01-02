@@ -9,7 +9,7 @@
     {
       "_type": "section",
       "type": "hero",
-      "heading": "Building Strong Digital Foundations for Growing Organizations",
+      "heading": "Technology Strategy, Product Development, and Digital Media for Growing Organizations",
       "content": [
         {
           "_type": "block",
@@ -17,14 +17,14 @@
           "children": [
             {
               "_type": "span",
-              "text": "Strategy, product development, and media production to help businesses and mission-driven organizations operate more effectively and scale with confidence.",
+              "text": "We help businesses and mission-driven organizations build strong foundations through strategic consulting, custom product development, and compelling digital media. From clarifying your technology direction to building scalable applications and creating engaging content, we partner with you to achieve your goals and scale with confidence.",
               "marks": []
             }
           ],
           "markDefs": []
         }
       ],
-      "buttonText": "Start a Conversation",
+      "buttonText": "Schedule a Call",
       "buttonLink": "/consulting"
     },
     {
@@ -37,19 +37,25 @@
           "_key": "service-1",
           "_type": "benefit",
           "title": "Strategic Consulting",
-          "description": "Technology and media strategy to clarify direction, evaluate systems, and identify opportunities."
+          "description": "Technology and media strategy to clarify direction, evaluate systems, and identify opportunities. We help you make informed decisions about your technology stack, processes, and digital presence.",
+          "ctaText": "Discuss Your Strategy",
+          "ctaModalMode": "consulting"
         },
         {
           "_key": "service-2",
           "_type": "benefit",
           "title": "Product & App Development",
-          "description": "Web, SaaS, and internal tools built on strong technical foundations."
+          "description": "Web applications, SaaS platforms, and internal tools built on strong technical foundations. We design and develop custom solutions that scale with your business and support your team's workflow.",
+          "ctaText": "Start Your Project",
+          "ctaModalMode": "product"
         },
         {
           "_key": "service-3",
           "_type": "benefit",
           "title": "Media & Digital Presence",
-          "description": "Websites, content platforms, and media systems that amplify your voice and mission."
+          "description": "Websites, content platforms, and media systems that amplify your voice and mission. We create compelling digital experiences that engage your audience and communicate your story effectively.",
+          "ctaText": "Explore Media Solutions",
+          "ctaModalMode": "media"
         }
       ]
     },
@@ -132,23 +138,7 @@
     {
       "_type": "section",
       "type": "whoThisIsFor",
-      "heading": "Who This Is For",
-      "content": [],
-      "goodFit": [
-        "Small to mid-sized businesses",
-        "Independent founders and consultants",
-        "Non-profits and mission-driven organizations",
-        "Teams who value clarity, collaboration, and long-term thinking"
-      ],
-      "notGoodFit": [
-        "You're looking for quick, disposable work",
-        "You already know exactly what tool you want built without discussion"
-      ]
-    },
-    {
-      "_type": "section",
-      "type": "cta",
-      "heading": "Ready to strengthen your foundations?",
+      "heading": "Who We Work With",
       "content": [
         {
           "_type": "block",
@@ -156,7 +146,38 @@
           "children": [
             {
               "_type": "span",
-              "text": "Let's talk about what you're building and where you want to go.",
+              "text": "We partner with organizations that are committed to building thoughtfully and sustainably. Our approach works best when there's alignment on values, clear communication, and a shared vision for long-term success.",
+              "marks": []
+            }
+          ],
+          "markDefs": []
+        }
+      ],
+      "goodFit": [
+        "Small to mid-sized businesses ready to scale",
+        "Independent founders and consultants building their practice",
+        "Non-profits and mission-driven organizations making an impact",
+        "Teams who value clarity, collaboration, and strategic thinking",
+        "Organizations looking for a long-term technology partner"
+      ],
+      "notGoodFit": [
+        "You're looking for quick, disposable work without strategic input",
+        "You already know exactly what tool you want built without discussion",
+        "You need immediate turnaround on complex projects without planning"
+      ]
+    },
+    {
+      "_type": "section",
+      "type": "cta",
+      "heading": "Ready to Build Something Great?",
+      "content": [
+        {
+          "_type": "block",
+          "style": "normal",
+          "children": [
+            {
+              "_type": "span",
+              "text": "Let's discuss your goals, explore opportunities, and create a plan to strengthen your digital foundations. Whether you need strategic guidance, custom development, or compelling media, we're here to help you succeed.",
               "marks": []
             }
           ],

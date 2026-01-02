@@ -2,7 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 interface MessageRequest {
+  name: string;
+  email: string;
+  phone?: string;
+  website?: string;
   message: string;
+  serviceType?: string;
 }
 
 function createTransporter() {
@@ -56,6 +61,18 @@ export async function POST(request: NextRequest) {
     const body: MessageRequest = await request.json();
 
     // Validate required fields
+    if (!body.name || !body.name.trim()) {
+      return NextResponse.json(
+        { error: "Name is required" },
+        { status: 400 }
+      );
+    }
+    if (!body.email || !body.email.trim()) {
+      return NextResponse.json(
+        { error: "Email is required" },
+        { status: 400 }
+      );
+    }
     if (!body.message || !body.message.trim()) {
       return NextResponse.json(
         { error: "Message is required" },
@@ -66,10 +83,23 @@ export async function POST(request: NextRequest) {
     const recipientEmail = process.env.SCHEDULE_CALL_EMAIL || process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@panta.com";
     const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.GMAIL_USER || "noreply@panta.com";
     
-    const emailSubject = "New Message from Website";
+    const serviceTypeText = body.serviceType 
+      ? `\nService Type: ${body.serviceType.charAt(0).toUpperCase() + body.serviceType.slice(1)}`
+      : "";
+    const phoneText = body.phone ? `\nPhone: ${body.phone}` : "";
+    const websiteText = body.website ? `\nWebsite: ${body.website}` : "";
+    
+    const emailSubject = body.serviceType 
+      ? `New ${body.serviceType.charAt(0).toUpperCase() + body.serviceType.slice(1)} Inquiry from Website`
+      : "New Message from Website";
     const emailBody = `
 New message received from the website contact form:
 
+Contact Information:
+Name: ${body.name.trim()}
+Email: ${body.email.trim()}${phoneText}${websiteText}${serviceTypeText}
+
+Message:
 ${body.message.trim()}
 
 ---
